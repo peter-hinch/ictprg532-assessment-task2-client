@@ -3,10 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/PeterHinch/source/repos/ictprg532/AssessmentTask2Client/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/PeterHinch/source/repos/ictprg532/AssessmentTask2Client/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/PeterHinch/source/repos/ictprg532/AssessmentTask2Client/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/PeterHinch/source/repos/ictprg532/AssessmentTask2Client/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/PeterHinch/source/repos/ictprg532/AssessmentTask2Client/app/src/main/res/drawable/ic_baseline_sort_by_alpha_24.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/PeterHinch/source/repos/ictprg532/AssessmentTask2Client/app/src/main/res/drawable/ic_launcher_background.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/PeterHinch/source/repos/ictprg532/AssessmentTask2Client/app/src/main/res/layout/activity_add.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/PeterHinch/source/repos/ictprg532/AssessmentTask2Client/app/src/main/res/layout/activity_detail.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/PeterHinch/source/repos/ictprg532/AssessmentTask2Client/app/src/main/res/layout/activity_edit.xml" value="0.20520833333333333" />
-        <entry key="..\:/Users/PeterHinch/source/repos/ictprg532/AssessmentTask2Client/app/src/main/res/layout/activity_list.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/PeterHinch/source/repos/ictprg532/AssessmentTask2Client/app/src/main/res/layout/activity_list.xml" value="0.41041666666666665" />
         <entry key="..\:/Users/PeterHinch/source/repos/ictprg532/AssessmentTask2Client/app/src/main/res/layout/activity_main.xml" value="0.19791666666666666" />
         <entry key="..\:/Users/PeterHinch/source/repos/ictprg532/AssessmentTask2Client/app/src/main/res/layout/activity_welcome.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/PeterHinch/source/repos/ictprg532/AssessmentTask2Client/app/src/main/res/layout/item_view.xml" value="0.33" />
