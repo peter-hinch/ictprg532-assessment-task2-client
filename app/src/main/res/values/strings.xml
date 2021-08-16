@@ -1,7 +1,31 @@
 <resources>
     <string name="app_name">Assessment Task 2</string>
+    <!-- Welcome Page -->
+    <string name="welcome_button_themeLight">Light</string>
+    <string name="welcome_button_themeDark">Dark</string>
+    <string name="welcome_textView_welcomeMessage">Welcome Page</string>
+    <!-- List Page -->
+    <string name="list_fabMini_add">Add</string>
+    <string name="list_fabMini_sortDesc">Sort in Descending Order</string>
+    <string name="list_fabMini_sortAsc">Sort in Ascending Order</string>
+    <string name="list_fabMini_search">Search</string>
+    <string name="list_fabMini_delete">Delete</string>
+    <!-- Item View -->
     <string name="itemView_textView_heading">Lorem Ipsum</string>
     <string name="itemView_textView_description">dolor sit amet</string>
     <string name="itemView_textView_phone">0123 456 789</string>
     <string name="itemView_textView_date">16/09/2020</string>
+    <!-- Detail Pages Generic -->
+    <string name="detail_editText_heading">Lorem Ipsum</string>
+    <string name="detail_editText_description">Dolor sit amet</string>
+    <string name="detail_editText_phone">0123 456 789</string>
+    <string name="detail_editText_date">16/09/2020</string>
+    <string name="detail_editText_hint_heading">Type a Heading</string>
+    <string name="detail_editText_hint_description">Type a Description</string>
+    <string name="detail_editText_hint_phone">Add a Phone Number</string>
+    <string name="detail_editText_hint_date">Add a Date</string>
+    <string name="detail_button_back">Back</string>
+    <!-- Add / Edit Pages -->
+    <string name="add_button_add">Add</string>
+    <string name="edit_button_update">Update</string>
 </resources>

@@ -7,8 +7,84 @@
     tools:context=".ListActivity">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp" />
+        tools:layout_editor_absoluteY="1dp"
+    />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/list_fabMini_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabSize="mini"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_baseline_add_24"
+        android:contentDescription="@string/list_fabMini_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+    />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/list_fabMini_sortDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabSize="mini"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_baseline_sort_by_alpha_24"
+        android:contentDescription="@string/list_fabMini_sortDesc"
+        app:layout_constraintBottom_toTopOf="@+id/list_fabMini_add"
+        app:layout_constraintEnd_toEndOf="parent"
+    />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/list_fabMini_sortAsc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabSize="mini"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_baseline_sort_by_alpha_24"
+        android:contentDescription="@string/list_fabMini_sortAsc"
+        app:layout_constraintBottom_toTopOf="@+id/list_fabMini_sortDesc"
+        app:layout_constraintEnd_toEndOf="parent"
+    />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/list_fabMini_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabSize="mini"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_baseline_search_24"
+        android:contentDescription="@string/list_fabMini_search"
+        app:layout_constraintBottom_toTopOf="@+id/list_fabMini_sortAsc"
+        app:layout_constraintEnd_toEndOf="parent"
+    />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/list_fabMini_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:clickable="true"
+        android:contentDescription="@string/list_fabMini_delete"
+        android:focusable="true"
+        android:src="@drawable/ic_baseline_delete_24"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/list_fabMini_search"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
