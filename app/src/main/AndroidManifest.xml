@@ -10,7 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AssessmentTask2">
         <activity
-            android:name=".MainActivity"
+            android:name=".AddActivity"
+            android:exported="true" />
+        <activity
+            android:name=".DetailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".WelcomeActivity"
+            android:exported="true" />
+        <activity
+            android:name=".EditActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
