@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Assessment Task 2</string>
+    <string name="itemView_textView_heading">Lorem Ipsum</string>
+    <string name="itemView_textView_description">dolor sit amet</string>
+    <string name="itemView_textView_phone">0123 456 789</string>
+    <string name="itemView_textView_date">16/09/2020</string>
 </resources>
