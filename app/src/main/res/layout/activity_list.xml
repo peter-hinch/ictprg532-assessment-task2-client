@@ -39,12 +39,12 @@
         android:clickable="true"
         android:contentDescription="@string/list_fabMini_sortDesc"
         android:focusable="true"
-        android:src="@drawable/ic_baseline_sort_by_alpha_24"
-        app:tint="@color/white"
+        android:src="@drawable/ic_sort_by_alpha_z_a_24"
         app:backgroundTint="?attr/colorPrimary"
         app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@+id/list_fabMini_add"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/white" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/list_fabMini_sortAsc"
@@ -55,12 +55,12 @@
         android:clickable="true"
         android:contentDescription="@string/list_fabMini_sortAsc"
         android:focusable="true"
-        android:src="@drawable/ic_baseline_sort_by_alpha_24"
-        app:tint="@color/white"
+        android:src="@drawable/ic_sort_by_alpha_a_z_24"
         app:backgroundTint="?attr/colorPrimary"
         app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@+id/list_fabMini_sortDesc"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/white" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/list_fabMini_search"
