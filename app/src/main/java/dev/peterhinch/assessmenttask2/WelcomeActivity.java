@@ -10,15 +10,13 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 
-// Method for switching between activities with an animation from the GeeksForGeeks tutorial:
+// Method for switching between activities with an animation derived from the GeeksForGeeks tutorial:
 // 'How to add slide animation between activities in android?'
 // reference: https://www.geeksforgeeks.org/how-to-add-slide-animation-between-activities-in-android/
 
 public class WelcomeActivity extends AppCompatActivity {
 
     private final String TAG = this.getClass().getSimpleName();
-
-    private final DisplayMetrics displayMetrics = new DisplayMetrics();
 
     private GestureDetectorCompat mDetector;
 
@@ -27,13 +25,11 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-
         mDetector = new GestureDetectorCompat(this, new SliderGestureListener());
     }
 
-    // This method opens the ListActivity screen with the specified animation from the resources
-    // directory.
+    // This method opens the ListActivity screen with the animations specified in the XML files
+    // within the resources directory.
     public void openListActivity() {
         Intent intent = new Intent(this, ListActivity.class);
         startActivity(intent);
