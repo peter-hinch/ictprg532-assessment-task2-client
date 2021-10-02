@@ -1,14 +1,16 @@
-package dev.peterhinch.assessmenttask2;
+package dev.peterhinch.assessmenttask2.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class EditActivity extends AppCompatActivity {
+import dev.peterhinch.assessmenttask2.R;
+
+public class AddActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit);
+        setContentView(R.layout.activity_add);
     }
 }

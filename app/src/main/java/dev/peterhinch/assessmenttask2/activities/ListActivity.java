@@ -1,8 +1,10 @@
-package dev.peterhinch.assessmenttask2;
+package dev.peterhinch.assessmenttask2.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import dev.peterhinch.assessmenttask2.R;
 
 public class ListActivity extends AppCompatActivity {
 
