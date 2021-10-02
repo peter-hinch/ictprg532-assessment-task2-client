@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AssessmentTask2">
         <activity
+            android:name=".activities.ItemView"
+            android:exported="true" />
+        <activity
             android:name=".activities.AddActivity"
             android:exported="true" />
         <activity
