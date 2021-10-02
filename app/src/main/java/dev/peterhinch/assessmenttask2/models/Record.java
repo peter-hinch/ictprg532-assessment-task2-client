@@ -3,10 +3,10 @@ package dev.peterhinch.assessmenttask2.models;
 import java.util.Date;
 
 public class Record {
-    private final String heading;
-    private final String description;
-    private final String phone;
-    private final Date date;
+    private String heading;
+    private String description;
+    private String phone;
+    private Date date;
 
     public Record(String heading, String description, String phone, Date date) {
         this.heading = heading;
@@ -19,15 +19,31 @@ public class Record {
         return heading;
     }
 
+    public void setHeading(String heading) {
+        this.heading = heading;
+    }
+
     public String getDescription() {
         return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getPhone() {
         return phone;
     }
 
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     public Date getDate() {
         return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }
