@@ -1,4 +1,4 @@
-package dev.peterhinch.assessmenttask2.database;
+package dev.peterhinch.assessmenttask2.room;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -6,6 +6,8 @@ import java.util.Date;
 import dev.peterhinch.assessmenttask2.models.Record;
 
 public class RecordDb {
+    // TODO - Implement room functionality
+
     // Static variable single_instance of type Singleton.
     private static RecordDb db_instance = null;
 

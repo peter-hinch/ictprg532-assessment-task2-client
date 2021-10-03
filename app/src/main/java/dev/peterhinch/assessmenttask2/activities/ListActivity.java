@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import dev.peterhinch.assessmenttask2.R;
-import dev.peterhinch.assessmenttask2.database.RecordDb;
+import dev.peterhinch.assessmenttask2.room.RecordDb;
 import dev.peterhinch.assessmenttask2.lib.MyHash;
 import dev.peterhinch.assessmenttask2.models.Record;
 import dev.peterhinch.assessmenttask2.viewmodels.MyHashViewModel;
