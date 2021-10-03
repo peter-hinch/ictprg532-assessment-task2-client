@@ -3,6 +3,8 @@ package dev.peterhinch.assessmenttask2.models;
 import java.util.Date;
 
 public class Record {
+    // TODO - Will likely need Record functionality moved across to room entities
+
     private String heading;
     private String description;
     private String phone;
