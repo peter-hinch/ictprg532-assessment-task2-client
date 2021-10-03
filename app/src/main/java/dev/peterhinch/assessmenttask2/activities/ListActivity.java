@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import dev.peterhinch.assessmenttask2.R;
 import dev.peterhinch.assessmenttask2.database.RecordDb;
@@ -51,5 +52,37 @@ public class ListActivity extends AppCompatActivity {
                 new ListRecyclerViewAdapter(hashTable.myHash.toList(false));
         recyclerViewList.setAdapter(adapter);
         recyclerViewList.setLayoutManager(new LinearLayoutManager(this));
+
+        // Set the click functions for the index buttons.
+        setIndexClickListeners();
+    }
+
+    // Use the key provided to calculate the offset for the recycler view.
+    private void navBtnClick(int key) {
+        if (key < 0 || key > 26) {
+            return;
+        }
+
+        // Calculate the offset based on the key provided.
+        int offset = hashTable.myHash.calcOffsetByKey(key);
+        Log.d(TAG, "Offset for key: " + key + " is: " + offset);
+
+        // Use the offset to scroll the view to that location.
+        ((LinearLayoutManager) Objects.requireNonNull(
+                recyclerViewList.getLayoutManager()))
+                .scrollToPositionWithOffset(offset, 0);
+    }
+
+    // Create a click listener for each of the index buttons programmatically:
+    // Loop through all buttons by chaining getResources().getIdentifier() to
+    // determine the id value for each. Buttons have been renamed numerically
+    // to simplify the iteration.
+    // Reference: https://stackoverflow.com/questions/22639218/how-to-get-all-buttons-ids-in-one-time-on-android
+    private void setIndexClickListeners() {
+        for(int i = 0; i <= 26; i++) {
+            int buttonId = getResources().getIdentifier("list_button_" + i, "id", getPackageName());
+            int buttonKey = i;
+            findViewById(buttonId).setOnClickListener(v -> ListActivity.this.navBtnClick(buttonKey));
+        }
     }
 }
