@@ -24,7 +24,7 @@
         android:contentDescription="@string/list_fabMini_add"
         android:focusable="true"
         android:src="@drawable/ic_baseline_add_24"
-        app:tint="@color/white"
+        app:tint="@color/colorBackground"
         app:backgroundTint="?attr/colorPrimary"
         app:fabSize="mini"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -44,7 +44,7 @@
         app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@+id/list_fabMini_add"
         app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@color/white" />
+        app:tint="@color/colorBackground" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/list_fabMini_sortAsc"
@@ -60,7 +60,7 @@
         app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@+id/list_fabMini_sortDesc"
         app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@color/white" />
+        app:tint="@color/colorBackground" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/list_fabMini_search"
@@ -72,7 +72,7 @@
         android:contentDescription="@string/list_fabMini_search"
         android:focusable="true"
         android:src="@drawable/ic_baseline_search_24"
-        app:tint="@color/white"
+        app:tint="@color/colorBackground"
         app:backgroundTint="?attr/colorPrimary"
         app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@+id/list_fabMini_sortAsc"
@@ -88,7 +88,7 @@
         android:contentDescription="@string/list_fabMini_delete"
         android:focusable="true"
         android:src="@drawable/ic_baseline_delete_24"
-        app:tint="@color/white"
+        app:tint="@color/colorBackground"
         app:backgroundTint="?attr/colorPrimary"
         app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@+id/list_fabMini_search"

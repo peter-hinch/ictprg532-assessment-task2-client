@@ -15,7 +15,6 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 
 import dev.peterhinch.assessmenttask2.R;
-import dev.peterhinch.assessmenttask2.activities.ListActivity;
 
 // Method for switching between activities with an animation derived from the GeeksForGeeks tutorial:
 // 'How to add slide animation between activities in android?'
