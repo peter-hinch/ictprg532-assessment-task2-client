@@ -55,13 +55,13 @@ public class RecordDb {
         return db_instance;
     }
 
-    // Add a contact.
+    // Add a record.
     public void addContact(Record newRecord) {
         records.add(newRecord);
     }
 
-    // List contacts.
-    public ArrayList<Record> readContacts() {
+    // List records.
+    public ArrayList<Record> readRecords() {
         return records;
     }
 
