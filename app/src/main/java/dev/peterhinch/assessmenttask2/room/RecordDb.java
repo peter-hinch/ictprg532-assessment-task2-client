@@ -45,6 +45,7 @@ public abstract class RecordDb extends RoomDatabase {
         if(db.recordDao().getAllRecords().size() == 0) {
             db.recordDao().insertRecords(
                     // Add sample data.
+                    // TODO - Dates are currently not being entered correctly, find a solution to convert dates to milliseconds.
                     new Record("Amon", "Description 01", "0123 456 789", new Date(2021)),
                     new Record("Dominik", "Description 02", "0456 789 123", new Date(2021/2/2)),
                     new Record("Marlowe", "Description 03", "0789 123 456", new Date(2021/3/3)),
