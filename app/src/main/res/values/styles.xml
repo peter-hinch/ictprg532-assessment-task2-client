@@ -12,7 +12,7 @@
         <item name="colorBackgroundSurface">@color/colorBackgroundSurface</item>
         <item name="colorBorder">@color/colorBorder</item>
         <item name="colorError">@color/colorError</item>
-        <item name="colorText">@color/colorError</item>
+        <item name="colorText">@color/colorText</item>
         <item name="colorTextHighEmphasis">@color/colorTextHighEmphasis</item>
         <item name="colorTextMediumEmphasis">@color/colorTextMediumEmphasis</item>
         <item name="colorTextDisabled">@color/colorTextDisabled</item>
@@ -32,7 +32,7 @@
         <item name="colorBackgroundSurface">@color/colorBackgroundSurfaceDarkTheme</item>
         <item name="colorBorder">@color/colorBorderDarkTheme</item>
         <item name="colorError">@color/colorErrorDarkTheme</item>
-        <item name="colorText">@color/colorError</item>
+        <item name="colorText">@color/colorTextDarkTheme</item>
         <item name="colorTextHighEmphasis">@color/colorTextHighEmphasisDarkTheme</item>
         <item name="colorTextMediumEmphasis">@color/colorTextMediumEmphasisDarkTheme</item>
         <item name="colorTextDisabled">@color/colorTextDisabledDarkTheme</item>
