@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import dev.peterhinch.assessmenttask2.R;
@@ -17,6 +18,10 @@ import dev.peterhinch.assessmenttask2.room.entities.Record;
 public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerViewAdapter.ListItemViewHolder> {
     // Declare a dataset.
     private ArrayList<Record> recordList;
+
+    // String pattern and date format for date display
+    private String pattern = "dd/MM/yyyy";
+    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
     // Create a constructor for the adapter class and dataset property.
     public ListRecyclerViewAdapter(ArrayList<Record> recordList) {
@@ -39,7 +44,8 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
         holder.txtViewHeading.setText(recordList.get(position).getHeading());
         holder.txtViewDescription.setText(recordList.get(position).getDescription());
         holder.txtViewPhone.setText(recordList.get(position).getPhone());
-        holder.txtViewDate.setText(recordList.get(position).getDate().toString());
+        holder.txtViewDate.setText(
+                simpleDateFormat.format(recordList.get(position).getDate()));
     }
 
     // Implement getItemCount
