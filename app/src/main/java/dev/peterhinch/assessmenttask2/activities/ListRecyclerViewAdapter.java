@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import dev.peterhinch.assessmenttask2.R;
-import dev.peterhinch.assessmenttask2.models.Record;
+import dev.peterhinch.assessmenttask2.room.entities.Record;
 
 // The recycler view adapter must extend RecyclerView.Adapter .
 public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerViewAdapter.ListItemViewHolder> {

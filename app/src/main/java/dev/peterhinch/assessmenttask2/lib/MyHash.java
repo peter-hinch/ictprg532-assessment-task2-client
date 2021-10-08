@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.regex.Pattern;
 
-import dev.peterhinch.assessmenttask2.models.CustomComparator;
-import dev.peterhinch.assessmenttask2.models.Record;
+import dev.peterhinch.assessmenttask2.room.entities.CustomComparator;
+import dev.peterhinch.assessmenttask2.room.entities.Record;
 
 public class MyHash {
     // Declare an array of ArrayLists to contain Contact objects.
@@ -76,8 +76,8 @@ public class MyHash {
             hashTable[hashTableIndex].add(c);
         }
 
-        for (ArrayList<Record> contacts : hashTable) {
-            contacts.sort(new CustomComparator());
+        for (ArrayList<Record> records : hashTable) {
+            records.sort(new CustomComparator());
         }
     }
 

@@ -16,7 +16,7 @@ import java.util.Objects;
 import dev.peterhinch.assessmenttask2.R;
 import dev.peterhinch.assessmenttask2.room.RecordDb;
 import dev.peterhinch.assessmenttask2.lib.MyHash;
-import dev.peterhinch.assessmenttask2.models.Record;
+import dev.peterhinch.assessmenttask2.room.entities.Record;
 import dev.peterhinch.assessmenttask2.viewmodels.MyHashViewModel;
 
 public class ListActivity extends AppCompatActivity {
@@ -34,11 +34,15 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
+        // Initialise the database
+        RecordDb.initData(this);
+
         // Create the ViewModelProvider for MyHashViewModel
         hashTable = new ViewModelProvider(this).get(MyHashViewModel.class);
         if (hashTable.myHash == null) {
             // Retrieve data from the database and hash that data.
-            ArrayList<Record> allRecords = RecordDb.getInstance().readRecords();
+            ArrayList<Record> allRecords = (ArrayList<Record>) RecordDb
+                    .getInstance(this).recordDao().getAllRecords();
             hashTable.myHash = new MyHash();
             hashTable.myHash.buildHashTable(allRecords);
         } else {

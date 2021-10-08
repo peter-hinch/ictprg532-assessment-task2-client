@@ -1,4 +1,4 @@
-package dev.peterhinch.assessmenttask2.models;
+package dev.peterhinch.assessmenttask2.room.entities;
 
 import java.util.Comparator;
 
