@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -64,15 +65,16 @@ public class ListActivity extends AppCompatActivity {
         recyclerViewList.setAdapter(adapter);
         recyclerViewList.setLayoutManager(new LinearLayoutManager(this));
 
+        // Set the click functions for the index buttons.
+        setIndexClickListeners();
+
         // Set the click functions for the sorting FABs.
         sortAscClick();
         sortDescClick();
-
-        // Set the click functions for the index buttons.
-        setIndexClickListeners();
     }
 
     // Use the key provided to calculate the offset for the recycler view.
+    // TODO - Calculate correct offset for list in descending order.
     private void navBtnClick(int key) {
         if (key < 0 || key > 26) {
             return;
@@ -93,18 +95,40 @@ public class ListActivity extends AppCompatActivity {
 
     }
 
-    // TODO - Add Ascending (A-Z) sort functionality
+    // Ascending (A-Z) sort functionality
     private void sortAscClick() {
         btnSortAsc = findViewById(R.id.list_fabMini_sortAsc);
-        btnSortAsc.setOnClickListener(view ->
-                ListActivity.this.adapter.reloadList(hashTable.myHash.toList(false)));
+        btnSortAsc.setOnClickListener(view -> {
+            ListActivity.this.adapter.reloadList(hashTable.myHash.toList(false));
+            updateIndexLabels(false);
+        });
     }
 
-    // TODO - Add Descending (Z-A) sort functionality.
+    // Descending (Z-A) sort functionality.
     private void sortDescClick() {
         btnSortDesc = findViewById(R.id.list_fabMini_sortDesc);
-        btnSortDesc.setOnClickListener(view ->
-                ListActivity.this.adapter.reloadList(hashTable.myHash.toList(true)));
+        btnSortDesc.setOnClickListener(view -> {
+            ListActivity.this.adapter.reloadList(hashTable.myHash.toList(true));
+            updateIndexLabels(true);
+        });
+    }
+
+    private void updateIndexLabels(boolean reverse) {
+        // Create a Sting[] for the button labels using the string array defined
+        // in strings.xml .
+        String[] indexLabels = getResources().getStringArray(R.array.list_buttons_asc);
+
+        for(int i = 0; i < indexLabels.length; i++) {
+            // Obtain the button id to change
+            int buttonId = getResources().getIdentifier("list_button_" + i, "id", getPackageName());
+            Button indexButton = findViewById(buttonId);
+
+            if (!reverse) {
+                indexButton.setText(indexLabels[i]);
+            } else {
+                indexButton.setText(indexLabels[(indexLabels.length - 1) - i]);
+            }
+        }
     }
 
     // Create a click listener for each of the index buttons programmatically:
@@ -113,7 +137,10 @@ public class ListActivity extends AppCompatActivity {
     // to simplify the iteration.
     // Reference: https://stackoverflow.com/questions/22639218/how-to-get-all-buttons-ids-in-one-time-on-android
     private void setIndexClickListeners() {
-        for(int i = 0; i <= 26; i++) {
+        // Set the number of buttons to be set according to the string array
+        // defined in strings.xml .
+        int indexLabelsQty = getResources().getStringArray(R.array.list_buttons_asc).length;
+        for(int i = 0; i < indexLabelsQty; i++) {
             int buttonId = getResources().getIdentifier("list_button_" + i, "id", getPackageName());
             int buttonKey = i;
             findViewById(buttonId).setOnClickListener(v -> ListActivity.this.navBtnClick(buttonKey));
