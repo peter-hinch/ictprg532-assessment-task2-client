@@ -10,6 +10,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -27,6 +29,12 @@ public class ListActivity extends AppCompatActivity {
 
     // Declare the RecyclerView.
     private RecyclerView recyclerViewList;
+
+    // Buttons for sort and search.
+    private FloatingActionButton btnSortAsc;
+    private FloatingActionButton btnSortDesc;
+
+    private ListRecyclerViewAdapter adapter;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -52,10 +60,13 @@ public class ListActivity extends AppCompatActivity {
         // Set the data for the recycler view.
         recyclerViewList = findViewById(R.id.list_recyclerView);
         // Create and set the adapter, then set the layout manager.
-        ListRecyclerViewAdapter adapter =
-                new ListRecyclerViewAdapter(hashTable.myHash.toList(false));
+        adapter = new ListRecyclerViewAdapter(hashTable.myHash.toList(false));
         recyclerViewList.setAdapter(adapter);
         recyclerViewList.setLayoutManager(new LinearLayoutManager(this));
+
+        // Set the click functions for the sorting FABs.
+        sortAscClick();
+        sortDescClick();
 
         // Set the click functions for the index buttons.
         setIndexClickListeners();
@@ -75,6 +86,25 @@ public class ListActivity extends AppCompatActivity {
         ((LinearLayoutManager) Objects.requireNonNull(
                 recyclerViewList.getLayoutManager()))
                 .scrollToPositionWithOffset(offset, 0);
+    }
+
+    // TODO - Add Search functionality.
+    private void searchSubmitClick() {
+
+    }
+
+    // TODO - Add Ascending (A-Z) sort functionality
+    private void sortAscClick() {
+        btnSortAsc = findViewById(R.id.list_fabMini_sortAsc);
+        btnSortAsc.setOnClickListener(view ->
+                ListActivity.this.adapter.reloadList(hashTable.myHash.toList(false)));
+    }
+
+    // TODO - Add Descending (Z-A) sort functionality.
+    private void sortDescClick() {
+        btnSortDesc = findViewById(R.id.list_fabMini_sortDesc);
+        btnSortDesc.setOnClickListener(view ->
+                ListActivity.this.adapter.reloadList(hashTable.myHash.toList(true)));
     }
 
     // Create a click listener for each of the index buttons programmatically:

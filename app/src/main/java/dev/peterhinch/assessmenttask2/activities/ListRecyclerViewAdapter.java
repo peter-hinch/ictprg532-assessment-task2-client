@@ -28,6 +28,12 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
         this.recordList = recordList;
     }
 
+    // A method to reload the list contents.
+    public void reloadList (ArrayList<Record> recordList) {
+        this.recordList = recordList;
+        this.notifyDataSetChanged();
+    }
+
     // Implement onCreateViewHolder, onBindViewHolder and getItemCount.
     // Implement onCreateViewHolder
     @NonNull
