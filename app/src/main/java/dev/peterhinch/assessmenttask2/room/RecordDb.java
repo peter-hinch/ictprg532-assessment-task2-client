@@ -10,7 +10,7 @@ import androidx.room.TypeConverters;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Locale;
 
 import dev.peterhinch.assessmenttask2.room.entities.Converters;
 import dev.peterhinch.assessmenttask2.room.entities.Record;
@@ -48,7 +48,7 @@ public abstract class RecordDb extends RoomDatabase {
         RecordDb db = getInstance(context);
 
         // Add a SimpleDateFormat
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.forLanguageTag("en_AU"));
 
         if(db.recordDao().getAllRecords().size() == 0) {
             try {
