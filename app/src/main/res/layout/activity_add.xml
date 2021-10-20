@@ -72,7 +72,7 @@
         app:layout_constraintTop_toBottomOf="@+id/add_editText_phone" />
 
     <Button
-        android:id="@+id/add_button_back"
+        android:id="@+id/add_button_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
