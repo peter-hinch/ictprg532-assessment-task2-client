@@ -18,7 +18,6 @@
         android:hint="@string/detail_editText_hint_heading"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="@string/detail_editText_heading"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -35,7 +34,6 @@
         android:hint="@string/detail_editText_hint_description"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="@string/detail_editText_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_editText_heading" />
@@ -52,7 +50,6 @@
         android:hint="@string/detail_editText_hint_phone"
         android:inputType="phone"
         android:minHeight="48dp"
-        android:text="@string/detail_editText_phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +67,6 @@
         android:hint="@string/detail_editText_hint_date"
         android:inputType="date"
         android:minHeight="48dp"
-        android:text="@string/detail_editText_date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_editText_phone" />
