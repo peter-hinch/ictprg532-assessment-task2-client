@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,11 +32,6 @@ public class ListActivity extends AppCompatActivity {
 
     // Declare the RecyclerView.
     private RecyclerView recyclerViewList;
-
-    // Buttons for sort and search.
-    private FloatingActionButton btnSortAsc;
-    private FloatingActionButton btnSortDesc;
-    private FloatingActionButton btnSearchSubmit;
 
     private ListRecyclerViewAdapter adapter;
 
@@ -74,6 +70,7 @@ public class ListActivity extends AppCompatActivity {
         searchClick();
         sortAscClick();
         sortDescClick();
+        addClick();
     }
 
     // Use the key provided to calculate the offset for the recycler view.
@@ -95,7 +92,7 @@ public class ListActivity extends AppCompatActivity {
 
     // TODO - Add Search functionality.
     private void searchClick() {
-        btnSearchSubmit = findViewById(R.id.list_fabMini_search);
+        FloatingActionButton btnSearchSubmit = findViewById(R.id.list_fabMini_search);
         btnSearchSubmit.setOnClickListener(view -> {
             Log.d(TAG, "Search FAB press");
             new SearchDialogFragment().show(
@@ -105,7 +102,8 @@ public class ListActivity extends AppCompatActivity {
 
     // Ascending (A-Z) sort functionality
     private void sortAscClick() {
-        btnSortAsc = findViewById(R.id.list_fabMini_sortAsc);
+        // Buttons for sort and search.
+        FloatingActionButton btnSortAsc = findViewById(R.id.list_fabMini_sortAsc);
         btnSortAsc.setOnClickListener(view -> {
             ListActivity.this.adapter.reloadList(hashTable.myHash.toList(false));
             updateIndexLabels(false);
@@ -114,12 +112,25 @@ public class ListActivity extends AppCompatActivity {
 
     // Descending (Z-A) sort functionality.
     private void sortDescClick() {
-        btnSortDesc = findViewById(R.id.list_fabMini_sortDesc);
+        FloatingActionButton btnSortDesc = findViewById(R.id.list_fabMini_sortDesc);
         btnSortDesc.setOnClickListener(view -> {
             ListActivity.this.adapter.reloadList(hashTable.myHash.toList(true));
             updateIndexLabels(true);
         });
     }
+
+    // TODO - Add create functionality
+    // Create functionality
+    private void addClick(){
+        FloatingActionButton btnAdd = findViewById(R.id.list_fabMini_add);
+        btnAdd.setOnClickListener(view -> {
+            Intent intent = new Intent(ListActivity.this, AddActivity.class);
+            startActivity(intent);
+        });
+    }
+
+    // TODO - Add update (swipe item) functionality
+    // TODO - Add delete (click and drag) functionality
 
     private void updateIndexLabels(boolean reverse) {
         // Create a Sting[] for the button labels using the string array defined
