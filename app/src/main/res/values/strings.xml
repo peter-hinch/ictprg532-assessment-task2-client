@@ -67,7 +67,8 @@
         <item>@string/list_button_26</item>
     </string-array>
     <!-- Search Dialog -->
-    <string name="searchDialog_textView_search">Search query</string>
+    <string name="searchDialog_textView_search">Search by Name</string>
+    <string name="searchDialog_editTextHint_search">Name</string>
     <string name="searchDialog_button_search">Search</string>
     <!-- Item View -->
     <string name="itemView_textView_heading">Lorem Ipsum</string>
@@ -75,14 +76,10 @@
     <string name="itemView_textView_phone">0123 456 789</string>
     <string name="itemView_textView_date">16/09/2020</string>
     <!-- Detail Pages Generic -->
-    <string name="detail_editText_heading">Lorem Ipsum</string>
-    <string name="detail_editText_description">Dolor sit amet</string>
-    <string name="detail_editText_phone">0123 456 789</string>
-    <string name="detail_editText_date">16/09/2020</string>
-    <string name="detail_editText_hint_heading">Type a Heading</string>
-    <string name="detail_editText_hint_description">Type a Description</string>
-    <string name="detail_editText_hint_phone">Add a Phone Number</string>
-    <string name="detail_editText_hint_date">Add a Date</string>
+    <string name="detail_editText_hint_heading">Heading</string>
+    <string name="detail_editText_hint_description">Description</string>
+    <string name="detail_editText_hint_phone">Phone Number</string>
+    <string name="detail_editText_hint_date">Date</string>
     <string name="detail_button_back">Back</string>
     <!-- Add / Edit Pages -->
     <string name="add_button_add">Add</string>
