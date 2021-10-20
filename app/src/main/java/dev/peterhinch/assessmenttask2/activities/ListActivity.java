@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import dev.peterhinch.assessmenttask2.R;
+import dev.peterhinch.assessmenttask2.SearchDialogFragment;
 import dev.peterhinch.assessmenttask2.room.RecordDb;
 import dev.peterhinch.assessmenttask2.lib.MyHash;
 import dev.peterhinch.assessmenttask2.room.entities.Record;
@@ -34,6 +35,7 @@ public class ListActivity extends AppCompatActivity {
     // Buttons for sort and search.
     private FloatingActionButton btnSortAsc;
     private FloatingActionButton btnSortDesc;
+    private FloatingActionButton btnSearchSubmit;
 
     private ListRecyclerViewAdapter adapter;
 
@@ -69,6 +71,7 @@ public class ListActivity extends AppCompatActivity {
         setIndexClickListeners();
 
         // Set the click functions for the sorting FABs.
+        searchClick();
         sortAscClick();
         sortDescClick();
     }
@@ -91,8 +94,13 @@ public class ListActivity extends AppCompatActivity {
     }
 
     // TODO - Add Search functionality.
-    private void searchSubmitClick() {
-
+    private void searchClick() {
+        btnSearchSubmit = findViewById(R.id.list_fabMini_search);
+        btnSearchSubmit.setOnClickListener(view -> {
+            Log.d(TAG, "Search FAB press");
+            new SearchDialogFragment().show(
+                    getSupportFragmentManager(), SearchDialogFragment.TAG);
+        });
     }
 
     // Ascending (A-Z) sort functionality

@@ -66,6 +66,9 @@
         <item>@string/list_button_25</item>
         <item>@string/list_button_26</item>
     </string-array>
+    <!-- Search Dialog -->
+    <string name="searchDialog_textView_search">Search query</string>
+    <string name="searchDialog_button_search">Search</string>
     <!-- Item View -->
     <string name="itemView_textView_heading">Lorem Ipsum</string>
     <string name="itemView_textView_description">dolor sit amet</string>
