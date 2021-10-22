@@ -128,12 +128,14 @@ public abstract class RecordDb extends RoomDatabase {
     }
 
     // Update a Record in the database.
-    public static void updateRecord(final Context context, int id, Record record) {
+    public static void updateRecord(final Context context, Record record) {
         RecordDb db = getInstance(context);
+        db.recordDao().updateRecords(record);
     }
 
     // Delete a Record from the database.
-    public static void deleteRecord(final Context context, int id) {
+    public static void deleteRecord(final Context context, Record record) {
         RecordDb db = getInstance(context);
+        db.recordDao().deleteRecords(record);
     }
 }
