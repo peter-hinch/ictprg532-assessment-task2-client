@@ -1,5 +1,8 @@
 package dev.peterhinch.assessmenttask2.activities;
 
+import static dev.peterhinch.assessmenttask2.lib.MyHash.SORT_ASC;
+import static dev.peterhinch.assessmenttask2.lib.MyHash.SORT_DESC;
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -18,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import dev.peterhinch.assessmenttask2.R;
-import dev.peterhinch.assessmenttask2.SearchDialogFragment;
+import dev.peterhinch.assessmenttask2.fragments.SearchDialogFragment;
 import dev.peterhinch.assessmenttask2.room.RecordDb;
 import dev.peterhinch.assessmenttask2.lib.MyHash;
 import dev.peterhinch.assessmenttask2.room.entities.Record;
@@ -32,7 +35,6 @@ public class ListActivity extends AppCompatActivity {
 
     // Declare the RecyclerView.
     private RecyclerView recyclerViewList;
-
     private ListRecyclerViewAdapter adapter;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -105,8 +107,8 @@ public class ListActivity extends AppCompatActivity {
         // Buttons for sort and search.
         FloatingActionButton btnSortAsc = findViewById(R.id.list_fabMini_sortAsc);
         btnSortAsc.setOnClickListener(view -> {
-            ListActivity.this.adapter.reloadList(hashTable.myHash.toList(false));
-            updateIndexLabels(false);
+            ListActivity.this.adapter.reloadList(hashTable.myHash.toList(SORT_ASC));
+            updateIndexLabels(SORT_ASC);
         });
     }
 
@@ -114,13 +116,13 @@ public class ListActivity extends AppCompatActivity {
     private void sortDescClick() {
         FloatingActionButton btnSortDesc = findViewById(R.id.list_fabMini_sortDesc);
         btnSortDesc.setOnClickListener(view -> {
-            ListActivity.this.adapter.reloadList(hashTable.myHash.toList(true));
-            updateIndexLabels(true);
+            ListActivity.this.adapter.reloadList(hashTable.myHash.toList(SORT_DESC));
+            updateIndexLabels(SORT_DESC);
         });
     }
 
     // Create functionality
-    private void addClick(){
+    private void addClick() {
         FloatingActionButton btnAdd = findViewById(R.id.list_fabMini_add);
         btnAdd.setOnClickListener(view -> {
             Intent intent = new Intent(ListActivity.this, AddActivity.class);

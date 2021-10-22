@@ -15,6 +15,10 @@ public class MyHash {
     // Declare an array of ArrayLists to contain Contact objects.
     private static ArrayList<Record>[] hashTable;
 
+    // Constants for sort direction.
+    public static final boolean SORT_ASC = false;
+    public static final boolean SORT_DESC = true;
+
     public MyHash() {
         hashTable = new ArrayList[27];
         for(int i = 0; i < hashTable.length; i++){
