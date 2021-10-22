@@ -28,7 +28,7 @@ public class AddActivity extends AppCompatActivity {
         addClick();
     }
 
-    // TODO - Add create functionality
+    // Process the Add button event.
     private void addClick(){
         Button btnAdd = findViewById(R.id.add_button_add);
         btnAdd.setOnClickListener(view -> {
