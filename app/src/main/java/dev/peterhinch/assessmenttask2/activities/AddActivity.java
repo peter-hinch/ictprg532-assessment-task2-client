@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 import dev.peterhinch.assessmenttask2.R;
@@ -24,12 +23,12 @@ public class AddActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
-        // Set the click function for the Add button
+        // Set the click function for the Add button.
         addClick();
     }
 
-    // Process the Add button event.
-    private void addClick(){
+    // Process the 'Add' button event.
+    private void addClick() {
         Button btnAdd = findViewById(R.id.add_button_add);
         btnAdd.setOnClickListener(view -> {
             Log.d(TAG, "Add button pressed.");
