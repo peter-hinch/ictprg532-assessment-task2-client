@@ -119,7 +119,6 @@ public class ListActivity extends AppCompatActivity {
         });
     }
 
-    // TODO - Add create functionality
     // Create functionality
     private void addClick(){
         FloatingActionButton btnAdd = findViewById(R.id.list_fabMini_add);
