@@ -9,10 +9,14 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ClipData;
+import android.content.ClipDescription;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.DragEvent;
+import android.view.View;
 import android.widget.Button;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -164,6 +168,61 @@ public class ListActivity extends AppCompatActivity {
             int buttonId = getResources().getIdentifier("list_button_" + i, "id", getPackageName());
             int buttonKey = i;
             findViewById(buttonId).setOnClickListener(v -> ListActivity.this.navBtnClick(buttonKey));
+        }
+    }
+
+    // Create a listener to react to drag events.
+    // Reference: https://developer.android.com/guide/topics/ui/drag-drop
+    protected class myDragEventListener implements View.OnDragListener {
+        // This is the method called when dispatching a drag event to the listener.
+        public boolean onDrag(View v, DragEvent event) {
+            // Define a variable to store the action type for incoming events.
+            final int action = event.getAction();
+
+            // Switch case to handle events.
+            switch (action) {
+                case DragEvent.ACTION_DRAG_STARTED:
+                    // Determine whether this view can accept the dragged data.
+                    if (event.getClipDescription().hasMimeType(
+                            ClipDescription.MIMETYPE_TEXT_PLAIN)) {
+                        Log.d(TAG, "View is able to accept dragged data.");
+                        return true;
+                    }
+                    Log.w(TAG, "View is not able to accept dragged data.");
+                    return false;
+
+                case DragEvent.ACTION_DRAG_ENTERED:
+                    Log.d(TAG, "Drag entered.");
+                    return true;
+
+                case DragEvent.ACTION_DRAG_LOCATION:
+                    Log.d(TAG, "Drag location.");
+                    return true;
+
+                case DragEvent.ACTION_DRAG_EXITED:
+                    Log.d(TAG, "Drag exited.");
+                    return true;
+
+                case DragEvent.ACTION_DROP:
+                    // Get the item containing the dragged data.
+                    ClipData.Item item = event.getClipData().getItemAt(0);
+                    // Retrieve the text data from the item.
+                    CharSequence dragData = item.getText();
+                    Log.d(TAG, "Dragged data is " + dragData);
+                    return true;
+
+                case DragEvent.ACTION_DRAG_ENDED:
+                    if (event.getResult()) {
+                        Log.d(TAG, "Drag ended: The drop was handled.");
+                    } else {
+                        Log.d(TAG, "Drag ended: The drop was unsuccessful.");
+                    }
+                    return true;
+
+                default:
+                    Log.e(TAG, "Unknown action type received by OnDragListener.");
+            }
+            return false;
         }
     }
 }
