@@ -138,20 +138,29 @@ public class ListActivity extends AppCompatActivity {
 
     // TODO - Add update (swipe item) functionality
 
-    // TODO - Add delete (click and drag) functionality
+    // TODO - Add delete (drag and drop) functionality
     private void deleteDrag() {
         FloatingActionButton btnDelete = findViewById(R.id.list_fabMini_delete);
-        btnDelete.setOnDragListener(new View.OnDragListener() {
-            @Override
-            public boolean onDrag(View v, DragEvent dragEvent) {
-                switch (dragEvent.getAction()) {
-                    case ACTION_DROP:
-                        ClipData.Item listItem = dragEvent.getClipData().getItemAt(0);
-                        Log.d(TAG, "Something was dropped IN THE BIN");
+        btnDelete.setOnDragListener((view, dragEvent) -> {
+            switch (dragEvent.getAction()) {
+                case DragEvent.ACTION_DRAG_STARTED:
+                    // Determine whether this view can accept the dragged data.
+                    if (dragEvent.getClipDescription().hasMimeType(
+                            ClipDescription.MIMETYPE_TEXT_PLAIN)) {
+                        Log.d(TAG, "View is able to accept dragged data.");
                         return true;
-                }
-                return false;
+                    }
+                    Log.w(TAG, "View is not able to accept dragged data.");
+                    return false;
+                case DragEvent.ACTION_DROP:
+                    // Get the item containing the dragged data.
+                    ClipData.Item listItem = dragEvent.getClipData().getItemAt(0);
+                    // Retrieve the text data from the item.
+                    CharSequence dragData = listItem.getText();
+                    Log.d(TAG, dragData + " was dropped IN THE BIN");
+                    return true;
             }
+            return false;
         });
     }
 
