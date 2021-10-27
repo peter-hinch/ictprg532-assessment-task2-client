@@ -87,7 +87,9 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
             itemView.setOnLongClickListener(view -> {
                 // Create a new ClipData object (this is the data to be passed
                 // in the drag and drop operation).
-                ClipData.Item listItem = new ClipData.Item((CharSequence) view.getTag());
+                ClipData.Item listItem = new ClipData.Item(
+                        (CharSequence) txtViewHeading.getText().toString()
+                );
                 ClipData dragData = new ClipData(
                         (CharSequence) view.getTag(),
                         new String[] {ClipDescription.MIMETYPE_TEXT_PLAIN},
