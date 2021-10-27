@@ -2,6 +2,9 @@ package dev.peterhinch.assessmenttask2.activities;
 
 import android.content.ClipData;
 import android.content.ClipDescription;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,6 +87,22 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
             txtViewDescription = itemView.findViewById(R.id.itemView_textView_description);
             txtViewPhone = itemView.findViewById(R.id.itemView_textView_phone);
             txtViewDate = itemView.findViewById(R.id.itemView_textView_date);
+
+            // Create a click listener to display details.
+            itemView.setOnClickListener(v -> {
+                Context context = v.getContext();
+                Intent intent = new Intent(context, DetailActivity.class);
+
+                // Create a bundle to pass details into the detail activity.
+                Bundle bundle = new Bundle();
+                bundle.putString("heading", txtViewHeading.getText().toString());
+                bundle.putString("description", txtViewDescription.getText().toString());
+                bundle.putString("phone", txtViewPhone.getText().toString());
+                bundle.putString("date", txtViewDate.getText().toString());
+                intent.putExtras(bundle);
+
+                context.startActivity(intent);
+            });
 
             // Create a drag event on long press.
             itemView.setTag(TAG);
