@@ -10,7 +10,6 @@ import androidx.room.TypeConverters;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 import dev.peterhinch.assessmenttask2.room.entities.Converters;
@@ -131,6 +130,13 @@ public abstract class RecordDb extends RoomDatabase {
     public static void updateRecord(final Context context, Record record) {
         RecordDb db = getInstance(context);
         db.recordDao().updateRecords(record);
+    }
+
+    public static Record findRecordById(final Context context, int id) {
+        Record record;
+        RecordDb db = getInstance(context);
+        record = db.recordDao().getRecordById(id);
+        return record;
     }
 
     // Delete a Record from the database.

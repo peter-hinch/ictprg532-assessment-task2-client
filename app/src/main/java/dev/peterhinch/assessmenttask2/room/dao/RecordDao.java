@@ -35,7 +35,7 @@ public interface RecordDao {
 
     // Read one by ID
     @Query("SELECT * FROM record WHERE id = :recordId")
-    List<Record> getRecordById(int recordId);
+    Record getRecordById(int recordId);
 
     // Find record by heading
     @Query("SELECT id FROM record WHERE heading = :heading")

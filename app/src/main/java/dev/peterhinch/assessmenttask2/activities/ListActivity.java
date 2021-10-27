@@ -5,6 +5,7 @@ import static dev.peterhinch.assessmenttask2.lib.MyHash.SORT_DESC;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -152,18 +153,26 @@ public class ListActivity extends AppCompatActivity {
                     return false;
                 case DragEvent.ACTION_DRAG_ENTERED:
                     Log.d(TAG, "Drag entered.");
+                    btnDelete.setImageDrawable(AppCompatResources.getDrawable(
+                            this, R.drawable.ic_baseline_delete_forever_24)
+                    );
                     return true;
                 case DragEvent.ACTION_DRAG_EXITED:
                     Log.d(TAG, "Drag exited.");
+                    btnDelete.setImageDrawable(AppCompatResources.getDrawable(
+                            this, R.drawable.ic_baseline_delete_24)
+                    );
                     return true;
                 case DragEvent.ACTION_DROP:
                     // Get the item containing the dragged data.
                     ClipData.Item listItem = dragEvent.getClipData().getItemAt(0);
-                    // Parse the id integer from the item.
+                    // Retrieve the ID from the clip data.
                     int recordId = Integer.parseInt(listItem.getText().toString());
-                    // TODO - handle the drop event and delete item.
-
-                    Log.d(TAG, recordId + " was dropped IN THE BIN");
+                    // Find and delete the record from the database.
+                    Record recordToDelete = RecordDb.findRecordById(this, recordId);
+                    RecordDb.deleteRecord(this, recordToDelete);
+                    // TODO - Refresh the recycler view.
+                    Log.d(TAG, "Record " + recordId + " was deleted.");
                     return true;
             }
             return false;
