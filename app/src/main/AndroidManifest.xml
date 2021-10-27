@@ -3,6 +3,10 @@
     package="dev.peterhinch.assessmenttask2">
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <!-- Specifies that the phone permission is not compulsory for the app to install -->
+    <!-- Reference: https://developer.android.com/training/permissions/declaring -->
+    <uses-feature android:name="android.hardware.telephony"
+        android:required="false" />
 
     <application
         android:allowBackup="true"
