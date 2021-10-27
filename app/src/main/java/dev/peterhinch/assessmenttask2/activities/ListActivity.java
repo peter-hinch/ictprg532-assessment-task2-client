@@ -159,10 +159,11 @@ public class ListActivity extends AppCompatActivity {
                 case DragEvent.ACTION_DROP:
                     // Get the item containing the dragged data.
                     ClipData.Item listItem = dragEvent.getClipData().getItemAt(0);
-                    // Retrieve the text data from the item.
-                    CharSequence dragData = listItem.getText();
+                    // Parse the id integer from the item.
+                    int recordId = Integer.parseInt(listItem.getText().toString());
                     // TODO - handle the drop event and delete item.
-                    Log.d(TAG, dragData + " was dropped IN THE BIN");
+
+                    Log.d(TAG, recordId + " was dropped IN THE BIN");
                     return true;
             }
             return false;
