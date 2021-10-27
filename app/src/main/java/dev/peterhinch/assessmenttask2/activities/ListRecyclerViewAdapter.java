@@ -82,6 +82,9 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
         public ListItemViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            // Create a drag event on long press.
+            itemView.setTag(TAG);
+
             // Set the values in the item view.
             txtViewHeading = itemView.findViewById(R.id.itemView_textView_heading);
             txtViewDescription = itemView.findViewById(R.id.itemView_textView_description);
@@ -104,9 +107,12 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
                 context.startActivity(intent);
             });
 
-            // Create a drag event on long press.
-            itemView.setTag(TAG);
-            // Define the method for the interface called on long-click
+            // TODO - Create a swipe listener to reveal the edit button.
+
+            // TODO - Create a click listener to start the edit activity.
+
+            // Create a long click listener to initiate drag and drop (delete).
+            // Define the method for the interface called on long-click.
             itemView.setOnLongClickListener(view -> {
                 // Create a new ClipData object (this is the data to be passed
                 // in the drag and drop operation).

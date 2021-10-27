@@ -141,8 +141,6 @@ public class ListActivity extends AppCompatActivity {
         });
     }
 
-    // TODO - Add update (swipe item) functionality
-
     // Delete (drag and drop) functionality.
     private void deleteDrag() {
         FloatingActionButton btnDelete = findViewById(R.id.list_fabMini_delete);
