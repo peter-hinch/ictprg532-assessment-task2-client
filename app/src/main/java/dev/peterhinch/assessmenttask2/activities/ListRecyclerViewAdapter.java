@@ -109,7 +109,7 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
 
                 // Start the drag - 'null' means no local data is used, '0' means
                 // no flags are passed.
-                view.startDrag(dragData, myShadow, null, 1);
+                view.startDrag(dragData, myShadow, null, 0);
 
                 return true;
             });
