@@ -51,6 +51,7 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
     // Implement onBindViewHolder.
     @Override
     public void onBindViewHolder(@NonNull ListItemViewHolder holder, int position) {
+        holder.id = recordList.get(position).getId();
         holder.txtViewHeading.setText(recordList.get(position).getHeading());
         holder.txtViewDescription.setText(recordList.get(position).getDescription());
         holder.txtViewPhone.setText(recordList.get(position).getPhone());
@@ -66,6 +67,7 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
 
     // Create an inner class that extends RecyclerView.ViewHolder .
     class ListItemViewHolder extends RecyclerView.ViewHolder {
+        private int id;
         private TextView txtViewHeading;
         private TextView txtViewDescription;
         private TextView txtViewPhone;
@@ -88,7 +90,7 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
                 // Create a new ClipData object (this is the data to be passed
                 // in the drag and drop operation).
                 ClipData.Item listItem = new ClipData.Item(
-                        (CharSequence) txtViewHeading.getText().toString()
+                        (CharSequence) Integer.toString(id)
                 );
                 ClipData dragData = new ClipData(
                         (CharSequence) view.getTag(),

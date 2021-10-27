@@ -108,7 +108,7 @@ public class ListActivity extends AppCompatActivity {
         });
     }
 
-    // Ascending (A-Z) sort functionality
+    // Ascending (A-Z) sort functionality.
     private void sortAscClick() {
         // Buttons for sort and search.
         FloatingActionButton btnSortAsc = findViewById(R.id.list_fabMini_sortAsc);
@@ -127,7 +127,7 @@ public class ListActivity extends AppCompatActivity {
         });
     }
 
-    // Create functionality
+    // Create functionality.
     private void addClick() {
         FloatingActionButton btnAdd = findViewById(R.id.list_fabMini_add);
         btnAdd.setOnClickListener(view -> {
@@ -138,7 +138,7 @@ public class ListActivity extends AppCompatActivity {
 
     // TODO - Add update (swipe item) functionality
 
-    // TODO - Add delete (drag and drop) functionality
+    // Delete (drag and drop) functionality.
     private void deleteDrag() {
         FloatingActionButton btnDelete = findViewById(R.id.list_fabMini_delete);
         btnDelete.setOnDragListener((view, dragEvent) -> {
@@ -152,11 +152,18 @@ public class ListActivity extends AppCompatActivity {
                     }
                     Log.w(TAG, "View is not able to accept dragged data.");
                     return false;
+                case DragEvent.ACTION_DRAG_ENTERED:
+                    Log.d(TAG, "Drag entered.");
+                    return true;
+                case DragEvent.ACTION_DRAG_EXITED:
+                    Log.d(TAG, "Drag exited.");
+                    return true;
                 case DragEvent.ACTION_DROP:
                     // Get the item containing the dragged data.
                     ClipData.Item listItem = dragEvent.getClipData().getItemAt(0);
                     // Retrieve the text data from the item.
                     CharSequence dragData = listItem.getText();
+                    // TODO - handle the drop event and delete item.
                     Log.d(TAG, dragData + " was dropped IN THE BIN");
                     return true;
             }
