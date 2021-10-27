@@ -81,6 +81,7 @@
     <string name="detail_editText_hint_phone">Phone Number</string>
     <string name="detail_editText_hint_date">Date</string>
     <string name="detail_button_back">Back</string>
+    <string name="detail_button_call">Call</string>
     <!-- Add / Edit Pages -->
     <string name="add_button_add">Add</string>
     <string name="edit_button_update">Update</string>
