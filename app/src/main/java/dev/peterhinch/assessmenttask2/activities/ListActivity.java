@@ -1,5 +1,6 @@
 package dev.peterhinch.assessmenttask2.activities;
 
+import static android.view.DragEvent.ACTION_DROP;
 import static dev.peterhinch.assessmenttask2.lib.MyHash.SORT_ASC;
 import static dev.peterhinch.assessmenttask2.lib.MyHash.SORT_DESC;
 
@@ -77,6 +78,7 @@ public class ListActivity extends AppCompatActivity {
         sortAscClick();
         sortDescClick();
         addClick();
+        deleteDrag();
     }
 
     // Use the key provided to calculate the offset for the recycler view.
@@ -135,7 +137,23 @@ public class ListActivity extends AppCompatActivity {
     }
 
     // TODO - Add update (swipe item) functionality
+
     // TODO - Add delete (click and drag) functionality
+    private void deleteDrag() {
+        FloatingActionButton btnDelete = findViewById(R.id.list_fabMini_delete);
+        btnDelete.setOnDragListener(new View.OnDragListener() {
+            @Override
+            public boolean onDrag(View v, DragEvent dragEvent) {
+                switch (dragEvent.getAction()) {
+                    case ACTION_DROP:
+                        ClipData.Item listItem = dragEvent.getClipData().getItemAt(0);
+                        Log.d(TAG, "Something was dropped IN THE BIN");
+                        return true;
+                }
+                return false;
+            }
+        });
+    }
 
     private void updateIndexLabels(boolean reverse) {
         // Create a Sting[] for the button labels using the string array defined
@@ -203,7 +221,7 @@ public class ListActivity extends AppCompatActivity {
                     Log.d(TAG, "Drag exited.");
                     return true;
 
-                case DragEvent.ACTION_DROP:
+                case ACTION_DROP:
                     // Get the item containing the dragged data.
                     ClipData.Item item = event.getClipData().getItemAt(0);
                     // Retrieve the text data from the item.

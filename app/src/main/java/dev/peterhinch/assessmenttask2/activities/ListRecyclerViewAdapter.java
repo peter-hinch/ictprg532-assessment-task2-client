@@ -1,5 +1,7 @@
 package dev.peterhinch.assessmenttask2.activities;
 
+import android.content.ClipData;
+import android.content.ClipDescription;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +18,14 @@ import dev.peterhinch.assessmenttask2.room.entities.Record;
 
 // The recycler view adapter must extend RecyclerView.Adapter .
 public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerViewAdapter.ListItemViewHolder> {
+    private final String TAG = this.getClass().getSimpleName();
+
     // Declare a dataset.
     private ArrayList<Record> recordList;
 
-    // String pattern and date format for date display
-    private String pattern = "dd/MM/yyyy";
-    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+    // String pattern and date format for date display.
+    private final String pattern = "dd/MM/yyyy";
+    private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
     // Create a constructor for the adapter class and dataset property.
     public ListRecyclerViewAdapter(ArrayList<Record> recordList) {
@@ -35,7 +39,7 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
     }
 
     // Implement onCreateViewHolder, onBindViewHolder and getItemCount.
-    // Implement onCreateViewHolder
+    // Implement onCreateViewHolder.
     @NonNull
     @Override
     public ListItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -44,7 +48,7 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
         return new ListItemViewHolder(v);
     }
 
-    // Implement onBindViewHolder
+    // Implement onBindViewHolder.
     @Override
     public void onBindViewHolder(@NonNull ListItemViewHolder holder, int position) {
         holder.txtViewHeading.setText(recordList.get(position).getHeading());
@@ -54,26 +58,51 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
                 simpleDateFormat.format(recordList.get(position).getDate()));
     }
 
-    // Implement getItemCount
+    // Implement getItemCount.
     @Override
     public int getItemCount() {
         return recordList == null ? 0 : recordList.size();
     }
 
     // Create an inner class that extends RecyclerView.ViewHolder .
-    static class ListItemViewHolder extends RecyclerView.ViewHolder {
+    class ListItemViewHolder extends RecyclerView.ViewHolder {
         private TextView txtViewHeading;
         private TextView txtViewDescription;
         private TextView txtViewPhone;
         private TextView txtViewDate;
-        // The inner class must have a constructor for the view holder
+
+        // The inner class must have a constructor for the view holder.
         public ListItemViewHolder(@NonNull View itemView) {
             super(itemView);
-            // Set the values in the item view
+
+            // Set the values in the item view.
             txtViewHeading = itemView.findViewById(R.id.itemView_textView_heading);
             txtViewDescription = itemView.findViewById(R.id.itemView_textView_description);
             txtViewPhone = itemView.findViewById(R.id.itemView_textView_phone);
             txtViewDate = itemView.findViewById(R.id.itemView_textView_date);
+
+            // Create a drag event on long press.
+            itemView.setTag(TAG);
+            // Define the method for the interface called on long-click
+            itemView.setOnLongClickListener(view -> {
+                // Create a new ClipData object (this is the data to be passed
+                // in the drag and drop operation).
+                ClipData.Item listItem = new ClipData.Item((CharSequence) view.getTag());
+                ClipData dragData = new ClipData(
+                        (CharSequence) view.getTag(),
+                        new String[] {ClipDescription.MIMETYPE_TEXT_PLAIN},
+                        listItem
+                );
+
+                // Instantiate the drag shadow builder.
+                View.DragShadowBuilder myShadow = new MyDragShadowBuilder(view);
+
+                // Start the drag - 'null' means no local data is used, '0' means
+                // no flags are passed.
+                view.startDrag(dragData, myShadow, null, 0);
+
+                return true;
+            });
         }
     }
 }
