@@ -38,7 +38,8 @@ public class ListActivity extends AppCompatActivity {
     private MyHashViewModel hashTable;
 
     // Declare the RecyclerView.
-    private RecyclerView recyclerViewList;
+    ArrayList<Record> recyclerViewData;
+    private RecyclerView listRecyclerView;
     private ListRecyclerViewAdapter adapter;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -62,12 +63,15 @@ public class ListActivity extends AppCompatActivity {
             Log.d(TAG, "ViewModel created.");
         }
 
+        // Define the data for the recycler view.
+        recyclerViewData = hashTable.myHash.toList(SORT_ASC);
+
         // Set the data for the recycler view.
-        recyclerViewList = findViewById(R.id.list_recyclerView);
+        listRecyclerView = findViewById(R.id.list_recyclerView);
         // Create and set the adapter, then set the layout manager.
-        adapter = new ListRecyclerViewAdapter(hashTable.myHash.toList(false));
-        recyclerViewList.setAdapter(adapter);
-        recyclerViewList.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new ListRecyclerViewAdapter(recyclerViewData);
+        listRecyclerView.setAdapter(adapter);
+        listRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Set the click functions for the index buttons.
         setIndexClickListeners();
@@ -93,7 +97,7 @@ public class ListActivity extends AppCompatActivity {
 
         // Use the offset to scroll the view to that location.
         ((LinearLayoutManager) Objects.requireNonNull(
-                recyclerViewList.getLayoutManager()))
+                listRecyclerView.getLayoutManager()))
                 .scrollToPositionWithOffset(offset, 0);
     }
 
@@ -112,6 +116,7 @@ public class ListActivity extends AppCompatActivity {
         // Buttons for sort and search.
         FloatingActionButton btnSortAsc = findViewById(R.id.list_fabMini_sortAsc);
         btnSortAsc.setOnClickListener(view -> {
+            // TODO - Ensure current data is displayed.
             ListActivity.this.adapter.reloadList(hashTable.myHash.toList(SORT_ASC));
             updateIndexLabels(SORT_ASC);
         });
@@ -121,6 +126,7 @@ public class ListActivity extends AppCompatActivity {
     private void sortDescClick() {
         FloatingActionButton btnSortDesc = findViewById(R.id.list_fabMini_sortDesc);
         btnSortDesc.setOnClickListener(view -> {
+            // TODO - Ensure current data is displayed.
             ListActivity.this.adapter.reloadList(hashTable.myHash.toList(SORT_DESC));
             updateIndexLabels(SORT_DESC);
         });
@@ -142,6 +148,7 @@ public class ListActivity extends AppCompatActivity {
         FloatingActionButton btnDelete = findViewById(R.id.list_fabMini_delete);
         btnDelete.setOnDragListener((view, dragEvent) -> {
             switch (dragEvent.getAction()) {
+
                 case DragEvent.ACTION_DRAG_STARTED:
                     // Determine whether this view can accept the dragged data.
                     if (dragEvent.getClipDescription().hasMimeType(
@@ -151,28 +158,45 @@ public class ListActivity extends AppCompatActivity {
                     }
                     Log.w(TAG, "View is not able to accept dragged data.");
                     return false;
+
                 case DragEvent.ACTION_DRAG_ENTERED:
-                    Log.d(TAG, "Drag entered.");
+                    // Change the icon for the delete button on drag over.
                     btnDelete.setImageDrawable(AppCompatResources.getDrawable(
                             this, R.drawable.ic_baseline_delete_forever_24)
                     );
                     return true;
+
                 case DragEvent.ACTION_DRAG_EXITED:
-                    Log.d(TAG, "Drag exited.");
+                    // Change the icon for the delete button back to original icon.
                     btnDelete.setImageDrawable(AppCompatResources.getDrawable(
                             this, R.drawable.ic_baseline_delete_24)
                     );
                     return true;
+
                 case DragEvent.ACTION_DROP:
-                    // Get the item containing the dragged data.
-                    ClipData.Item listItem = dragEvent.getClipData().getItemAt(0);
-                    // Retrieve the ID from the clip data.
-                    int recordId = Integer.parseInt(listItem.getText().toString());
-                    // Find and delete the record from the database.
+                    // Retrieve the ID and item position from the clip data that
+                    // was transferred with the dragged item.
+                    ClipData.Item listItemId = dragEvent.getClipData().getItemAt(0);
+                    ClipData.Item listItemPosition = dragEvent.getClipData().getItemAt(1);
+                    int recordId = Integer.parseInt(listItemId.getText().toString());
+                    int itemPosition = Integer.parseInt(listItemPosition.getText().toString());
+
+                    // Find and delete the record from the database using the ID.
                     Record recordToDelete = RecordDb.findRecordById(this, recordId);
                     RecordDb.deleteRecord(this, recordToDelete);
-                    // TODO - Refresh the recycler view.
-                    Log.d(TAG, "Record " + recordId + " was deleted.");
+
+                    // Refresh the recycler view to reflect database change using
+                    // the position.
+                    recyclerViewData.remove(itemPosition);
+                    adapter.notifyItemRemoved(itemPosition);
+
+                    // Change the icon for the delete button back to original icon.
+                    btnDelete.setImageDrawable(AppCompatResources.getDrawable(
+                            this, R.drawable.ic_baseline_delete_24)
+                    );
+
+                    Log.d(TAG, "Record " + recordId +
+                            " at position " + itemPosition + " was deleted.");
                     return true;
             }
             return false;

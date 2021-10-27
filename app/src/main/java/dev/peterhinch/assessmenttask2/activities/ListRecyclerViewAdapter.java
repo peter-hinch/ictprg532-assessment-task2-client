@@ -52,6 +52,7 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
     @Override
     public void onBindViewHolder(@NonNull ListItemViewHolder holder, int position) {
         holder.id = recordList.get(position).getId();
+        holder.position = holder.getAdapterPosition();
         holder.txtViewHeading.setText(recordList.get(position).getHeading());
         holder.txtViewDescription.setText(recordList.get(position).getDescription());
         holder.txtViewPhone.setText(recordList.get(position).getPhone());
@@ -68,10 +69,11 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
     // Create an inner class that extends RecyclerView.ViewHolder .
     class ListItemViewHolder extends RecyclerView.ViewHolder {
         private int id;
-        private TextView txtViewHeading;
-        private TextView txtViewDescription;
-        private TextView txtViewPhone;
-        private TextView txtViewDate;
+        private int position;
+        private final TextView txtViewHeading;
+        private final TextView txtViewDescription;
+        private final TextView txtViewPhone;
+        private final TextView txtViewDate;
 
         // The inner class must have a constructor for the view holder.
         public ListItemViewHolder(@NonNull View itemView) {
@@ -89,21 +91,25 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
             itemView.setOnLongClickListener(view -> {
                 // Create a new ClipData object (this is the data to be passed
                 // in the drag and drop operation).
-                ClipData.Item listItem = new ClipData.Item(
+                ClipData.Item listItemId = new ClipData.Item(
                         (CharSequence) Integer.toString(id)
+                );
+                ClipData.Item listItemPos = new ClipData.Item(
+                        (CharSequence) Integer.toString(position)
                 );
                 ClipData dragData = new ClipData(
                         (CharSequence) view.getTag(),
                         new String[] {ClipDescription.MIMETYPE_TEXT_PLAIN},
-                        listItem
+                        listItemId
                 );
+                dragData.addItem(listItemPos);
 
                 // Instantiate the drag shadow builder.
                 View.DragShadowBuilder myShadow = new MyDragShadowBuilder(view);
 
                 // Start the drag - 'null' means no local data is used, '0' means
                 // no flags are passed.
-                view.startDrag(dragData, myShadow, null, 0);
+                view.startDrag(dragData, myShadow, null, 1);
 
                 return true;
             });
