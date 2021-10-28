@@ -36,6 +36,15 @@ public class Record {
     }
 
     @Ignore
+    public Record(int id, String heading, String description, String phone, Date date) {
+        this.id = id;
+        this.heading = heading;
+        this.description = description;
+        this.phone = phone;
+        this.date = date;
+    }
+
+    @Ignore
     public int getId() {
         return id;
     }
