@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -81,6 +82,7 @@ public class ListActivity extends AppCompatActivity {
         sortAscClick();
         sortDescClick();
         addClick();
+        deleteClick();
         deleteDrag();
     }
 
@@ -139,6 +141,18 @@ public class ListActivity extends AppCompatActivity {
             Intent intent = new Intent(ListActivity.this, AddActivity.class);
             startActivity(intent);
         });
+    }
+
+    // Delete hint (display a simple toast message when clicking on the button).
+    private void deleteClick() {
+        FloatingActionButton btnDelete = findViewById(R.id.list_fabMini_delete);
+        btnDelete.setOnClickListener((view -> {
+            Toast.makeText(
+                    getApplicationContext(),
+                    "Drag a record into the bin to delete.",
+                    Toast.LENGTH_SHORT
+            ).show();
+        }));
     }
 
     // Delete (drag and drop) functionality.
