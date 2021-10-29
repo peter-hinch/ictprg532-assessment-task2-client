@@ -49,6 +49,11 @@ public class Record {
         return id;
     }
 
+    @Ignore
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getHeading() {
         return heading;
     }
