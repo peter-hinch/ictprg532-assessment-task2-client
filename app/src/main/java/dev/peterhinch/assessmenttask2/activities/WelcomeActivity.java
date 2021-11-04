@@ -74,7 +74,7 @@ public class WelcomeActivity extends AppCompatActivity {
         public boolean onFling(MotionEvent event1, MotionEvent event2,
                 float velocityX, float velocityY) {
             Log.d(TAG, "onFling: " + velocityX + "/" + velocityY);
-            // velocityX will be a value less than zero if the swipe is to the right.
+            // velocityX will be a value less than zero if the swipe is to the left.
             if (velocityX < 0) {
                 openListActivity();
             }
