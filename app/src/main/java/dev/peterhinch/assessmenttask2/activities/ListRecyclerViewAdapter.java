@@ -20,7 +20,8 @@ import dev.peterhinch.assessmenttask2.R;
 import dev.peterhinch.assessmenttask2.room.entities.Record;
 
 // The recycler view adapter must extend RecyclerView.Adapter .
-public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerViewAdapter.ListItemViewHolder> {
+public class ListRecyclerViewAdapter
+        extends RecyclerView.Adapter<ListRecyclerViewAdapter.ListItemViewHolder> {
     private final String TAG = this.getClass().getSimpleName();
 
     // Declare a dataset.
