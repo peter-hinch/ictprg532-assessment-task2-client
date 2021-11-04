@@ -116,7 +116,7 @@ public abstract class RecordDb extends RoomDatabase {
             } catch (ParseException parseException) {
                 Log.e(TAG, "An exception occurred when parsing date strings.", parseException);
             }
-        }
+        } // Generate example database content.
         return db.recordDao().getAllRecords().size();
     }
 
