@@ -49,6 +49,13 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
+        // TODO - Add integration with Rest API
+        //RetrofitServices.getInstance().RecordCreate(new Record("Peter", "Hinch", "2021-10-15"), this);
+        //RetrofitServices.getInstance().RecordReadOne(1, this);
+        //RetrofitServices.getInstance().RecordReadAll(this);
+        //RetrofitServices.getInstance().RecordUpdate(1, new Record("Peter2", "Hinch2", "2021-10-16"), this);
+        //RetrofitServices.getInstance().RecordDelete(1, this);
+
         // Initialise the database
         RecordDb.initData(this);
 
@@ -78,12 +85,12 @@ public class ListActivity extends AppCompatActivity {
         setIndexClickListeners();
 
         // Set the click functions for the sorting FABs.
+        deleteClick();
+        deleteDrag();
         searchClick();
         sortAscClick();
         sortDescClick();
         addClick();
-        deleteClick();
-        deleteDrag();
     }
 
     // Use the key provided to calculate the offset for the recycler view.
@@ -146,13 +153,11 @@ public class ListActivity extends AppCompatActivity {
     // Delete hint (display a simple toast message when clicking on the button).
     private void deleteClick() {
         FloatingActionButton btnDelete = findViewById(R.id.list_fabMini_delete);
-        btnDelete.setOnClickListener((view -> {
-            Toast.makeText(
-                    getApplicationContext(),
-                    "Drag a record into the bin to delete.",
-                    Toast.LENGTH_SHORT
-            ).show();
-        }));
+        btnDelete.setOnClickListener((view -> Toast.makeText(
+                getApplicationContext(),
+                "Drag a record into the bin to delete.",
+                Toast.LENGTH_SHORT
+        ).show()));
     }
 
     // Delete (drag and drop) functionality.
