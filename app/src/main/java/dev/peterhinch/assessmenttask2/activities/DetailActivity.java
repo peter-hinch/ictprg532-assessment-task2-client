@@ -2,17 +2,28 @@ package dev.peterhinch.assessmenttask2.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import dev.peterhinch.assessmenttask2.R;
 
 public class DetailActivity extends AppCompatActivity {
     private final String TAG = this.getClass().getSimpleName();
+
+    private static final int MAKE_CALL_PERMISSION_REQUEST_CODE = 1;
+
+    EditText editTextHeading;
+    EditText editTextDescription;
+    EditText editTextPhone;
+    EditText editTextDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,10 +34,10 @@ public class DetailActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
 
         // Define the EditText views within the details activity.
-        EditText editTextHeading = (EditText)findViewById(R.id.detail_editText_heading);
-        EditText editTextDescription = (EditText)findViewById(R.id.detail_editText_description);
-        EditText editTextPhone = (EditText)findViewById(R.id.detail_editText_phone);
-        EditText editTextDate = (EditText)findViewById(R.id.detail_editText_date);
+        editTextHeading = (EditText)findViewById(R.id.detail_editText_heading);
+        editTextDescription = (EditText)findViewById(R.id.detail_editText_description);
+        editTextPhone = (EditText)findViewById(R.id.detail_editText_phone);
+        editTextDate = (EditText)findViewById(R.id.detail_editText_date);
 
         // Populate the EditText views with information passed in with the bundle.
         editTextHeading.setText(bundle.getString("heading"));
@@ -49,4 +60,34 @@ public class DetailActivity extends AppCompatActivity {
             startActivity(intent);
         });
     }
+
+    // TODO - Process the 'Call' button event (advanced functionality).
+    // Reference: https://ssaurel.medium.com/learn-to-make-calls-programmatically-on-android-d5c3069a7c28
+    // Reference: https://developer.android.com/training/permissions/requesting
+//    private void callClick() {
+//        Button btnCall = findViewById(R.id.detail_button_call);
+//        btnCall.setOnClickListener(view -> {
+//            Log.d(TAG, "Call button pressed.");
+//
+//            String numberToCall = editTextPhone.getText().toString();
+//
+//            // Check that the field is not empty.
+//            if (!TextUtils.isEmpty(numberToCall)) {
+//                // Verify that the app has the correct permissions
+//                if (checkPermission(Manifest.permission.CALL_PHONE, , )) {
+//                    String dial = "tel:" + numberToCall;
+//                    startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));
+//                } else {
+//                    Log.e(TAG, "Android permission CALL_PHONE denied.");
+//                }
+//            } else {
+//                Toast.makeText(DetailActivity.this, "No phone number entered.",
+//                        Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//        if (checkPermission(Manifest.permission.CALL_PHONE, , )) {
+//            dial.setEnabled(true);
+//        }
+//    }
 }
