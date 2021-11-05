@@ -3,7 +3,6 @@ package dev.peterhinch.assessmenttask2.activities;
 import static dev.peterhinch.assessmenttask2.lib.MyHash.SORT_ASC;
 import static dev.peterhinch.assessmenttask2.lib.MyHash.SORT_DESC;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
@@ -15,17 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.ClipData;
 import android.content.ClipDescription;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.RectF;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -92,7 +84,12 @@ public class ListActivity extends AppCompatActivity {
 
         // TODO - Detect swipe gesture to progress to reveal the edit button.
         // Initialise swipe detection on list items.
-        SwipeController swipeController = new SwipeController();
+        SwipeController swipeController = new SwipeController(new SwipeControllerActions() {
+            @Override
+            public void onClicked(int position) {
+                super.onClicked(position);
+            }
+        });
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeController);
         itemTouchHelper.attachToRecyclerView(listRecyclerView);
 
