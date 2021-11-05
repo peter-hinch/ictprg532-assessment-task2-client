@@ -9,12 +9,12 @@ import android.view.View;
 
 // Create a drag shadow for dragging an ItemView as a small grey rectangle.
 // Reference: https://developer.android.com/guide/topics/ui/drag-drop
-public class MyDragShadowBuilder extends View.DragShadowBuilder {
+public class DragShadowBuilder extends View.DragShadowBuilder {
     // Define the drag shadow image.
     private static Drawable shadow;
 
-    // Constructor for MyDragShadowBuilder.
-    public MyDragShadowBuilder(View v) {
+    // Constructor for DragShadowBuilder.
+    public DragShadowBuilder(View v) {
         // Store the View parameter passed to myDragShadowBuilder.
         super(v);
 
