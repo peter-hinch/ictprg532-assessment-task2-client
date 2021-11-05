@@ -3,20 +3,29 @@ package dev.peterhinch.assessmenttask2.activities;
 import static dev.peterhinch.assessmenttask2.lib.MyHash.SORT_ASC;
 import static dev.peterhinch.assessmenttask2.lib.MyHash.SORT_DESC;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ClipData;
 import android.content.ClipDescription;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -42,6 +51,7 @@ public class ListActivity extends AppCompatActivity {
     ArrayList<Record> recyclerViewData;
     private RecyclerView listRecyclerView;
     private ListRecyclerViewAdapter adapter;
+    private Paint paint = new Paint();
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -84,13 +94,18 @@ public class ListActivity extends AppCompatActivity {
         // Set the click functions for the index buttons.
         setIndexClickListeners();
 
-        // Set the click functions for the sorting FABs.
+        // Set the click functions for the FABs.
         deleteClick();
-        deleteDrag();
         searchClick();
         sortAscClick();
         sortDescClick();
         addClick();
+
+        // Set the drag listener for item deletion.
+        deleteDrag();
+
+        // Initialise swipe detection on list items.
+        editSwipe();
     }
 
     // Use the key provided to calculate the offset for the recycler view.
@@ -218,6 +233,64 @@ public class ListActivity extends AppCompatActivity {
             }
             return false;
         });
+    }
+
+    // TODO - Detect swipe gesture to progress to reveal the edit button.
+    // TODO - Create a click listener to start the edit activity.
+    // Reference: https://www.learn2crack.com/2016/02/custom-swipe-recyclerview.html
+    // Reference: https://codeburst.io/android-swipe-menu-with-recyclerview-8f28a235ff28#ed30
+    private void editSwipe() {
+        ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(
+                0, ItemTouchHelper.LEFT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView,
+                                  @NonNull RecyclerView.ViewHolder viewHolder,
+                                  @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder,
+                                 int direction) {
+                int position = viewHolder.getAdapterPosition();
+
+                if (direction == ItemTouchHelper.LEFT) {
+                    Log.d(TAG, "Swipe detected on item " + position + ".");
+                    //adapter.editItem(position);
+                }
+            }
+
+//            @Override
+//            public void onChildDraw(Canvas canvas, RecyclerView recyclerView,
+//                                    RecyclerView.ViewHolder viewHolder, float dX,
+//                                    float dY, int actionState,
+//                                    boolean isCurrentlyActive) {
+//                if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
+//
+//                    View itemView = viewHolder.itemView;
+//                    float height = (float) itemView.getHeight();
+//                    float width = height / 3;
+//
+//                    paint.setColor(Color.parseColor("#388E3C"));
+//                    RectF background = new RectF(
+//                            (float) itemView.getRight(),
+//                            (float) itemView.getTop(),
+//                            dX / 2,
+//                            (float) itemView.getBottom());
+//                    canvas.drawRect(background,paint);
+//                    Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_baseline_edit_24);
+//                    RectF iconLocation = new RectF(
+//                            (float) itemView.getRight()  - 2 * width,
+//                            (float) itemView.getTop() + width,
+//                            (float) itemView.getRight() - width,
+//                            (float) itemView.getBottom() - width);
+//                    canvas.drawBitmap(icon,null, iconLocation, paint);
+//                }
+//                super.onChildDraw(canvas, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+//            }
+        };
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
+        itemTouchHelper.attachToRecyclerView(listRecyclerView);
     }
 
     private void updateIndexLabels(boolean reverse) {
