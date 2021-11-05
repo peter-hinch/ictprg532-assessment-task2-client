@@ -108,21 +108,13 @@ public class ListRecyclerViewAdapter
                 context.startActivity(intent);
             });
 
-            // TODO - Create a swipe listener to reveal the edit button.
-
-            // TODO - Create a click listener to start the edit activity.
-
             // Create a long click listener to initiate drag and drop (delete).
             // Define the method for the interface called on long-click.
             itemView.setOnLongClickListener(view -> {
                 // Create a new ClipData object (this is the data to be passed
                 // in the drag and drop operation).
-                ClipData.Item listItemId = new ClipData.Item(
-                        (CharSequence) Integer.toString(id)
-                );
-                ClipData.Item listItemPos = new ClipData.Item(
-                        (CharSequence) Integer.toString(position)
-                );
+                ClipData.Item listItemId = new ClipData.Item(Integer.toString(id));
+                ClipData.Item listItemPos = new ClipData.Item(Integer.toString(position));
                 ClipData dragData = new ClipData(
                         (CharSequence) view.getTag(),
                         new String[] {ClipDescription.MIMETYPE_TEXT_PLAIN},
