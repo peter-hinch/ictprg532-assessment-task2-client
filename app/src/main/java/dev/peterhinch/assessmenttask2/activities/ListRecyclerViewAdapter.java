@@ -123,7 +123,7 @@ public class ListRecyclerViewAdapter
                 dragData.addItem(listItemPos);
 
                 // Instantiate the drag shadow builder.
-                View.DragShadowBuilder myShadow = new MyDragShadowBuilder(view);
+                View.DragShadowBuilder myShadow = new DragShadowBuilder(view);
 
                 // Start the drag - 'null' means no local data is used, '0' means
                 // no flags are passed.
