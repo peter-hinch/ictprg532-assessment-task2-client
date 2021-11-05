@@ -82,7 +82,6 @@ public class ListActivity extends AppCompatActivity {
         listRecyclerView.setAdapter(adapter);
         listRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // TODO - Detect swipe gesture to progress to reveal the edit button.
         // Initialise swipe detection on list items.
         SwipeController swipeController = new SwipeController(new SwipeControllerActions() {
             @Override

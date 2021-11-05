@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+// TODO - Detect swipe gesture to reveal the edit button.
 // Class to act on swipe actions within the RecyclerView.
 // Reference: https://www.learn2crack.com/2016/02/custom-swipe-recyclerview.html
 // Reference: https://codeburst.io/android-swipe-menu-with-recyclerview-8f28a235ff28#ed30
