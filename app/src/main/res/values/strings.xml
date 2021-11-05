@@ -71,6 +71,7 @@
     <string name="searchDialog_editTextHint_search">Name</string>
     <string name="searchDialog_button_search">Search</string>
     <!-- Item View -->
+    <string name="view_item_accessibility">Swipe to edit, click to view or drag into bin to delete.</string>
     <string name="itemView_textView_heading">Lorem Ipsum</string>
     <string name="itemView_textView_description">dolor sit amet</string>
     <string name="itemView_textView_phone">0123 456 789</string>
