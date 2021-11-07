@@ -6,8 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="90dp"
-    android:text="@string/view_item_accessibility"
-    app:dragFromEdge="right">
+    android:text="@string/view_item_accessibility">
 
     <FrameLayout
         android:layout_width="wrap_content"
@@ -53,7 +52,8 @@
             android:background="?attr/colorBackground"
             android:clickable="true"
             android:focusable="true"
-            android:visibility="visible">
+            android:visibility="visible"
+            tools:visibility="visible">
 
             <TextView
                 android:id="@+id/itemView_textView_heading"
