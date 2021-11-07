@@ -93,6 +93,7 @@ public class ListRecyclerViewAdapter
             txtViewPhone = itemView.findViewById(R.id.itemView_textView_phone);
             txtViewDate = itemView.findViewById(R.id.itemView_textView_date);
 
+            // TODO - troubleshoot why click and long click are no longer working.
             // Create a click listener to display details.
             itemView.setOnClickListener(v -> {
                 Context context = v.getContext();
