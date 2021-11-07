@@ -7,7 +7,6 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,8 +28,6 @@ import java.util.Objects;
 import dev.peterhinch.assessmenttask2.R;
 import dev.peterhinch.assessmenttask2.fragments.SearchDialogFragment;
 import dev.peterhinch.assessmenttask2.lib.ListRecyclerViewAdapter;
-import dev.peterhinch.assessmenttask2.lib.SwipeController;
-import dev.peterhinch.assessmenttask2.lib.SwipeControllerActions;
 import dev.peterhinch.assessmenttask2.room.RecordDb;
 import dev.peterhinch.assessmenttask2.lib.MyHash;
 import dev.peterhinch.assessmenttask2.room.entities.Record;
@@ -84,17 +81,6 @@ public class ListActivity extends AppCompatActivity {
         adapter = new ListRecyclerViewAdapter(recyclerViewData);
         listRecyclerView.setAdapter(adapter);
         listRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        // Initialise swipe detection on list items and override action method.
-        SwipeController swipeController = new SwipeController(new SwipeControllerActions() {
-            @Override
-            public void onClicked(int position) {
-                super.onClicked(position);
-                Log.d(TAG, "Here's a swipe!");
-            }
-        });
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeController);
-        itemTouchHelper.attachToRecyclerView(listRecyclerView);
 
         // Set the drag listener for item deletion.
         deleteDrag();
