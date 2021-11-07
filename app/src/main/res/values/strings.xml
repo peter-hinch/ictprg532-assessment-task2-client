@@ -76,6 +76,7 @@
     <string name="itemView_textView_description">dolor sit amet</string>
     <string name="itemView_textView_phone">0123 456 789</string>
     <string name="itemView_textView_date">16/09/2020</string>
+    <string name="itemView_fabMini_edit">Edit</string>
     <!-- Detail Pages Generic -->
     <string name="detail_editText_hint_heading">Heading</string>
     <string name="detail_editText_hint_description">Description</string>
