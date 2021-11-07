@@ -1,4 +1,4 @@
-package dev.peterhinch.assessmenttask2.activities;
+package dev.peterhinch.assessmenttask2.lib;
 
 import android.graphics.Canvas;
 import android.graphics.Color;

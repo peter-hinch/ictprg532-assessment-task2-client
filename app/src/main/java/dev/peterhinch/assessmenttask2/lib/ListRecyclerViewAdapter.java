@@ -1,4 +1,4 @@
-package dev.peterhinch.assessmenttask2.activities;
+package dev.peterhinch.assessmenttask2.lib;
 
 import android.content.ClipData;
 import android.content.ClipDescription;
@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import dev.peterhinch.assessmenttask2.R;
+import dev.peterhinch.assessmenttask2.activities.DetailActivity;
 import dev.peterhinch.assessmenttask2.room.entities.Record;
 
 // The recycler view adapter must extend RecyclerView.Adapter .
