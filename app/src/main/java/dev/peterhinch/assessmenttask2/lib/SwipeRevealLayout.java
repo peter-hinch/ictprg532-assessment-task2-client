@@ -49,8 +49,6 @@ public class SwipeRevealLayout extends ViewGroup {
     private static final int DEFAULT_MIN_FLING_VELOCITY = 300; // dp per second.
     private static final int DEFAULT_MIN_DIST_REQUEST_DISALLOW_PARENT = 1; // dp.
 
-    private static final int DRAG_EDGE_RIGHT = 0x1 << 1;
-
     // While view resides underneath the main view.
     public static int MODE_NORMAL = 0;
     // While the secondary view is attached to the edge of the main view.
@@ -77,8 +75,6 @@ public class SwipeRevealLayout extends ViewGroup {
 
     private int minFlingVelocity = DEFAULT_MIN_FLING_VELOCITY;
     private int mode = MODE_NORMAL;
-
-    private int dragEdge = DRAG_EDGE_RIGHT;
 
     private float dragDist = 0;
     private float prevX = -1;
@@ -233,9 +229,6 @@ public class SwipeRevealLayout extends ViewGroup {
         final int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         final int heightMode = MeasureSpec.getMode(heightMeasureSpec);
 
-        final LayoutParams mainParams = itemMain.getLayoutParams();
-        final LayoutParams editParams = itemEdit.getLayoutParams();
-
         int desiredWidth = 0;
         int desiredHeight = 0;
 
@@ -336,17 +329,11 @@ public class SwipeRevealLayout extends ViewGroup {
     }
 
     private int getMainOpenLeft() {
-        if (dragEdge == DRAG_EDGE_RIGHT) {
-            return rectMainClose.left - secondaryView.getWidth();
-        }
-        return 0;
+        return rectMainClose.left - secondaryView.getWidth();
     }
 
     private int getMainOpenTop() {
-        if (dragEdge == DRAG_EDGE_RIGHT) {
-            return rectMainClose.top;
-        }
-        return 0;
+        return rectMainClose.top;
     }
 
     private int get2ndOpenLeft() {
@@ -409,7 +396,6 @@ public class SwipeRevealLayout extends ViewGroup {
 
     private void init(Context context, AttributeSet attributeSet) {
         if (attributeSet != null && context != null) {
-            dragEdge = DRAG_EDGE_RIGHT;
             mode = MODE_NORMAL;
             minFlingVelocity = DEFAULT_MIN_FLING_VELOCITY;
             minDistRequestDisallowParent = DEFAULT_MIN_DIST_REQUEST_DISALLOW_PARENT;
@@ -458,15 +444,12 @@ public class SwipeRevealLayout extends ViewGroup {
     };
 
     private int getDistToClosestEdge() {
-        if (dragEdge == DRAG_EDGE_RIGHT) {
-                final int pivotLeft = rectMainClose.right - secondaryView.getWidth();
+        final int pivotLeft = rectMainClose.right - secondaryView.getWidth();
 
-                return Math.min(
-                        mainView.getRight() - pivotLeft,
-                        rectMainClose.right - mainView.getRight()
-                );
-        }
-        return 0;
+        return Math.min(
+                mainView.getRight() - pivotLeft,
+                rectMainClose.right - mainView.getRight()
+        );
     }
 
     private int getHalfwayPivotHorizontal() {
@@ -486,13 +469,10 @@ public class SwipeRevealLayout extends ViewGroup {
 
         @Override
         public int clampViewPositionHorizontal(@NonNull View child, int left, int dx) {
-            if (dragEdge == DRAG_EDGE_RIGHT) {
-                return Math.max(
-                        Math.min(left, rectMainClose.left),
-                        rectMainClose.left - secondaryView.getWidth()
-                );
-            }
-            return child.getLeft();
+            return Math.max(
+                    Math.min(left, rectMainClose.left),
+                    rectMainClose.left - secondaryView.getWidth()
+            );
         }
 
         @Override
@@ -529,11 +509,7 @@ public class SwipeRevealLayout extends ViewGroup {
         public void onViewPositionChanged(@NonNull View changedView, int left, int top, int dx, int dy) {
             super.onViewPositionChanged(changedView, left, top, dx, dy);
             if (mode == MODE_SAME_LEVEL) {
-                if (dragEdge == DRAG_EDGE_RIGHT) {
-                    secondaryView.offsetLeftAndRight(dx);
-                } else {
-                    secondaryView.offsetTopAndBottom(dy);
-                }
+                secondaryView.offsetLeftAndRight(dx);
             }
             ViewCompat.postInvalidateOnAnimation(SwipeRevealLayout.this);
         }
