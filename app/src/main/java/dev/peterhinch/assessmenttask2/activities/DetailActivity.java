@@ -34,10 +34,10 @@ public class DetailActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
 
         // Define the EditText views within the details activity.
-        editTextHeading = (EditText)findViewById(R.id.detail_editText_heading);
-        editTextDescription = (EditText)findViewById(R.id.detail_editText_description);
-        editTextPhone = (EditText)findViewById(R.id.detail_editText_phone);
-        editTextDate = (EditText)findViewById(R.id.detail_editText_date);
+        editTextHeading = findViewById(R.id.detail_editText_heading);
+        editTextDescription = findViewById(R.id.detail_editText_description);
+        editTextPhone = findViewById(R.id.detail_editText_phone);
+        editTextDate = findViewById(R.id.detail_editText_date);
 
         // Populate the EditText views with information passed in with the bundle.
         editTextHeading.setText(bundle.getString("heading"));
