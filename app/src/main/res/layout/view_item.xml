@@ -57,13 +57,15 @@
 
             <TextView
                 android:id="@+id/itemView_textView_heading"
-                android:layout_width="150dp"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="8dp"
                 android:lines="2"
                 android:text="@string/itemView_textView_heading"
                 android:textSize="24sp"
+                android:maxLines="2"
+                android:ellipsize="end"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/itemView_textView_description"
                 app:layout_constraintHorizontal_weight="1"
@@ -78,6 +80,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
                 android:text="@string/itemView_textView_description"
+                android:maxLines="1"
+                android:ellipsize="end"
                 app:layout_constraintBottom_toTopOf="@+id/itemView_textView_phone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_weight="1"
@@ -90,6 +94,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/itemView_textView_phone"
+                android:maxLines="1"
+                android:ellipsize="end"
                 app:layout_constraintBottom_toTopOf="@id/itemView_textView_date"
                 app:layout_constraintStart_toStartOf="@+id/itemView_textView_description"
                 app:layout_constraintTop_toBottomOf="@id/itemView_textView_description" />
@@ -101,6 +107,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:text="@string/itemView_textView_date"
+                android:maxLines="1"
+                android:ellipsize="end"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/itemView_textView_description"
                 app:layout_constraintTop_toBottomOf="@id/itemView_textView_phone" />
