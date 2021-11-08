@@ -39,19 +39,15 @@
     </FrameLayout>
 
     <FrameLayout
+        android:id="@+id/itemView_frameLayout_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clickable="true"
-        android:focusable="true"
-        android:longClickable="true"
         tools:ignore="DuplicateClickableBoundsCheck">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?attr/colorBackground"
-            android:clickable="true"
-            android:focusable="true"
             android:visibility="visible"
             tools:visibility="visible">
 
