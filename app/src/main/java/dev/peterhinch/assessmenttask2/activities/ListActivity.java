@@ -223,8 +223,6 @@ public class ListActivity extends AppCompatActivity {
         });
     }
 
-    // TODO - Create a click listener to start the edit activity.
-
     private void updateIndexLabels(boolean reverse) {
         // Create a Sting[] for the button labels using the string array defined
         // in strings.xml .
