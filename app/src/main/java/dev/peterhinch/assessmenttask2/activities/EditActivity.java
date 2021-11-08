@@ -18,10 +18,30 @@ import dev.peterhinch.assessmenttask2.room.entities.Record;
 public class EditActivity extends AppCompatActivity {
     private final String TAG = this.getClass().getSimpleName();
 
+    EditText editTextHeading;
+    EditText editTextDescription;
+    EditText editTextPhone;
+    EditText editTextDate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
+
+        // Retrieve the data passed in with the bundle.
+        Bundle bundle = getIntent().getExtras();
+
+        // Define the EditText views within the details activity.
+        editTextHeading = findViewById(R.id.edit_editText_heading);
+        editTextDescription = findViewById(R.id.edit_editText_description);
+        editTextPhone = findViewById(R.id.edit_editText_phone);
+        editTextDate = findViewById(R.id.edit_editText_date);
+
+        // Populate the EditText views with information passed in with the bundle.
+        editTextHeading.setText(bundle.getString("heading"));
+        editTextDescription.setText(bundle.getString("description"));
+        editTextPhone.setText(bundle.getString("phone"));
+        editTextDate.setText(bundle.getString("date"));
 
         // Set the click function for the 'Update' button.
         updateClick();
@@ -33,10 +53,10 @@ public class EditActivity extends AppCompatActivity {
         btnUpdate.setOnClickListener(view -> {
             Log.d(TAG, "Update button pressed.");
 
-            EditText editTextHeading = (EditText)findViewById(R.id.edit_editText_heading);
-            EditText editTextDescription = (EditText)findViewById(R.id.edit_editText_description);
-            EditText editTextPhone = (EditText)findViewById(R.id.edit_editText_phone);
-            EditText editTextDate = (EditText)findViewById(R.id.edit_editText_date);
+            editTextHeading = findViewById(R.id.edit_editText_heading);
+            editTextDescription = findViewById(R.id.edit_editText_description);
+            editTextPhone = findViewById(R.id.edit_editText_phone);
+            editTextDate = findViewById(R.id.edit_editText_date);
 
             // Add a SimpleDateFormat
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.forLanguageTag("en_AU"));
