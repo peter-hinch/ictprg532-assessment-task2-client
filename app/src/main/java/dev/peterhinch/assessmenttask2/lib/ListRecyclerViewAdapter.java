@@ -19,10 +19,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
 
 import dev.peterhinch.assessmenttask2.R;
 import dev.peterhinch.assessmenttask2.activities.DetailActivity;
+import dev.peterhinch.assessmenttask2.activities.EditActivity;
 import dev.peterhinch.assessmenttask2.room.entities.Record;
 
 // The recycler view adapter must extend RecyclerView.Adapter .
@@ -74,12 +74,12 @@ public class ListRecyclerViewAdapter
             Context context = view.getContext();
             detailsClick(context, holder);
         });
-        holder.mainView.setOnLongClickListener(view -> {
-            return deleteDrag(view, holder);
-        });
+        holder.mainView.setOnLongClickListener(view -> deleteDrag(view, holder));
+
         // Create an onClickListener for the edit button.
         holder.editFab.setOnClickListener(view -> {
-            editClick(position);
+            Context context = view.getContext();
+            editClick(context, holder);
         });
     }
 
@@ -131,9 +131,19 @@ public class ListRecyclerViewAdapter
         context.startActivity(intent);
     }
 
-    // TODO - Create a click listener to start the edit activity.
-    private void editClick(int position) {
-        Log.d(TAG, "EDIT CLICKED AT POSITION: " + position + ".");
+    private void editClick(Context context, ListItemViewHolder holder) {
+        Log.d(TAG, "EDIT CLICKED AT POSITION: " + holder.position + ".");
+        Intent intent = new Intent(context, EditActivity.class);
+
+        // Create a bundle to pass details into the detail activity.
+        Bundle bundle = new Bundle();
+        bundle.putString("heading", holder.txtViewHeading.getText().toString());
+        bundle.putString("description", holder.txtViewDescription.getText().toString());
+        bundle.putString("phone", holder.txtViewPhone.getText().toString());
+        bundle.putString("date", holder.txtViewDate.getText().toString());
+        intent.putExtras(bundle);
+
+        context.startActivity(intent);
     }
 
     private boolean deleteDrag(View view, ListItemViewHolder holder) {
