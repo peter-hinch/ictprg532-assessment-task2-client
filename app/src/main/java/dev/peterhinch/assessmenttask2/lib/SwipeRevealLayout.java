@@ -221,14 +221,20 @@ public class SwipeRevealLayout extends ViewGroup {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        if (getChildCount() < 2) {
+        if (getChildCount() != 2) {
             throw new RuntimeException("Layout must have two children");
         }
 
         final LayoutParams params = getLayoutParams();
 
+        final View itemMain = getChildAt(0);
+        final View itemEdit = getChildAt(1);
+
         final int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         final int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+
+        final LayoutParams mainParams = itemMain.getLayoutParams();
+        final LayoutParams editParams = itemEdit.getLayoutParams();
 
         int desiredWidth = 0;
         int desiredHeight = 0;
@@ -236,24 +242,18 @@ public class SwipeRevealLayout extends ViewGroup {
         final int measuredWidth = MeasureSpec.getSize(widthMeasureSpec);
         final int measuredHeight = MeasureSpec.getSize(heightMeasureSpec);
 
-        for (int i = 0; i < getChildCount(); i++) {
-            final View child = getChildAt(i);
-            final LayoutParams childParams = child.getLayoutParams();
+        itemMain.setMinimumHeight(measuredHeight);
+        itemEdit.setMinimumHeight(measuredHeight);
+        itemMain.setMinimumWidth(measuredWidth);
+        itemMain.setMinimumWidth(desiredWidth);
 
-            if (childParams != null) {
-                if (childParams.height == LayoutParams.MATCH_PARENT) {
-                    child.setMinimumHeight(measuredHeight);
-                }
+        measureChild(itemMain, widthMeasureSpec, heightMeasureSpec);
+        desiredWidth = Math.max(itemMain.getMeasuredWidth(), desiredWidth);
+        desiredHeight = Math.max(itemMain.getMeasuredHeight(), desiredHeight);
 
-                if (childParams.width == LayoutParams.MATCH_PARENT) {
-                    child.setMinimumWidth(measuredWidth);
-                }
-            }
-
-            measureChild(child, widthMeasureSpec, heightMeasureSpec);
-            desiredWidth = Math.max(child.getMeasuredWidth(), desiredWidth);
-            desiredHeight = Math.max(child.getMeasuredHeight(), desiredHeight);
-        }
+        measureChild(itemEdit, widthMeasureSpec, heightMeasureSpec);
+        desiredWidth = Math.max(itemEdit.getMeasuredWidth(), desiredWidth);
+        desiredHeight = Math.max(itemEdit.getMeasuredHeight(), desiredHeight);
 
         // taking accounts of padding
         desiredWidth += getPaddingLeft() + getPaddingRight();
