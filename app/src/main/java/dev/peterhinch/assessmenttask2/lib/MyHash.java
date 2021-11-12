@@ -75,9 +75,9 @@ public class MyHash {
             return;
         }
 
-        for (Record c : list) {
-            int hashTableIndex = hash(c.getHeading());
-            hashTable[hashTableIndex].add(c);
+        for (Record r : list) {
+            int hashTableIndex = hash(r.getHeading());
+            hashTable[hashTableIndex].add(r);
         }
 
         for (ArrayList<Record> records : hashTable) {
@@ -94,7 +94,7 @@ public class MyHash {
         // Get the first char and convert to uppercase.
         char c = s.toUpperCase().charAt(0);
         // Convert the char to it's ASCII value.
-        int asciiValue = (int)c;
+        int asciiValue = c;
         if(asciiValue >= 65 && asciiValue <= 90) {
             asciiValue = asciiValue - 64;
         } else {
