@@ -117,7 +117,8 @@ public class DetailActivity extends AppCompatActivity {
 
     // Override onRequestPermissionsResult.
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == MAKE_CALL_PERMISSION_REQUEST_CODE) {
             if (grantResults.length > 0 && (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
@@ -127,7 +128,8 @@ public class DetailActivity extends AppCompatActivity {
                 Log.d(TAG, "Permission denied: CALL_PHONE.");
 
                 if (shouldShowRequestPermissionRationale(Manifest.permission.CALL_PHONE)) {
-                    showMessageOKCancel("You will need to allow this app permission to make phone calls.",
+                    showMessageOKCancel("You will need to allow this app permission " +
+                                    "to make phone calls.",
                             (dialog, which) -> requestPhonePermission());
                 }
             }
