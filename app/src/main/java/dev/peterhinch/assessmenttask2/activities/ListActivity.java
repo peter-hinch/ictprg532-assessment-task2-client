@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import dev.peterhinch.assessmenttask2.R;
-import dev.peterhinch.assessmenttask2.fragments.SearchDialogFragment;
 import dev.peterhinch.assessmenttask2.lib.ListRecyclerViewAdapter;
 import dev.peterhinch.assessmenttask2.room.RecordDb;
 import dev.peterhinch.assessmenttask2.lib.MyHash;
