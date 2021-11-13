@@ -68,7 +68,6 @@
     </string-array>
     <!-- Search Dialog -->
     <string name="search_textView_searchLabel">Search by Heading</string>
-    <string name="search_editText_searchQuery">Heading</string>
     <string name="search_button_search">Search</string>
     <string name="search_button_cancel">Cancel</string>
     <!-- Item View -->
