@@ -118,8 +118,8 @@ public class ListActivity extends AppCompatActivity {
         FloatingActionButton btnSearchSubmit = findViewById(R.id.list_fabMini_search);
         btnSearchSubmit.setOnClickListener(view -> {
             Log.d(TAG, "Search FAB press");
-            new SearchDialogFragment().show(
-                    getSupportFragmentManager(), SearchDialogFragment.TAG);
+            Intent intent = new Intent(ListActivity.this, SearchActivity.class);
+            startActivity(intent);
         });
     }
 
