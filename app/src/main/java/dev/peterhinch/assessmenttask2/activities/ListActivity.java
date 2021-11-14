@@ -61,7 +61,6 @@ public class ListActivity extends AppCompatActivity
             Log.d(TAG, query);
         }
 
-        // TODO - Add integration with Rest API
         //RetrofitServices.getInstance().RecordCreate(new Record("Peter", "Hinch", "2021-10-15"), this);
         //RetrofitServices.getInstance().RecordReadOne(1, this);
         RetrofitServices.getInstance().RecordReadAll(this);
@@ -294,7 +293,7 @@ public class ListActivity extends AppCompatActivity
     }
 
     @Override
-    public void OnFailureHandler() {
-        Log.d(TAG, "Failure received by ListActivity CreateOnResponseHandler.");
+    public void OnFailureHandler(Throwable throwable) {
+        Log.d(TAG, "Failure received: " + throwable.toString());
     }
 }
