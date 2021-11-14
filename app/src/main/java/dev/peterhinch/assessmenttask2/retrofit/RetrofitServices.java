@@ -28,7 +28,7 @@ public class RetrofitServices {
         // GsonBuilder .setDateFormat() is used to specify the date format.
         // Reference: https://futurestud.io/tutorials/retrofit-2-adding-customizing-the-gson-converter
         Gson gson = new GsonBuilder()
-                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+                .setDateFormat("yyyy'-'MM'-'dd'T'HH':'mm':'ss")
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
