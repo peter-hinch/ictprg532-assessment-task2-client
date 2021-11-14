@@ -16,13 +16,11 @@ public class Converters {
 
     @TypeConverter
     public static Date fromTimestamp(Long longDate) {
-        Log.d(TAG, "fromTimestamp(" + longDate + ") will return " + new Date(longDate));
         return longDate == null ? null : new Date(longDate);
     }
 
     @TypeConverter
     public static Long dateToTimestamp(Date date) {
-        Log.d(TAG, "dateToTimestamp(" + date + ") will return " + date.getTime());
         return date == null ? null : date.getTime();
     }
 }
