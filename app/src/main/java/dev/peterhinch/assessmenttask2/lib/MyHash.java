@@ -15,10 +15,6 @@ public class MyHash {
     // Declare an array of ArrayLists to contain Contact objects.
     private static ArrayList<Record>[] hashTable;
 
-    // Constants for sort direction.
-    public static final boolean SORT_ASC = false;
-    public static final boolean SORT_DESC = true;
-
     public MyHash() {
         hashTable = new ArrayList[27];
         for(int i = 0; i < hashTable.length; i++){
@@ -92,9 +88,8 @@ public class MyHash {
     // Output: Hash key
     public static int hash(String s) {
         // Get the first char and convert to uppercase.
-        char c = s.toUpperCase().charAt(0);
         // Convert the char to it's ASCII value.
-        int asciiValue = c;
+        int asciiValue = s.toUpperCase().charAt(0);
         if(asciiValue >= 65 && asciiValue <= 90) {
             asciiValue = asciiValue - 64;
         } else {
@@ -106,14 +101,14 @@ public class MyHash {
     // Additional functionality to allow searching of the hash table.
     public ArrayList<Record> filter(String query) {
         ArrayList<Record> results = new ArrayList<>();
-        for (ArrayList<Record> contacts : hashTable) {
-            for (int j = 0; j < contacts.size(); j++) {
+        for (ArrayList<Record> records : hashTable) {
+            for (int j = 0; j < records.size(); j++) {
                 if (Pattern.compile(Pattern.quote(query), Pattern.CASE_INSENSITIVE)
-                        .matcher(contacts
+                        .matcher(records
                                 .get(j)
                                 .getHeading())
                         .find()) {
-                    results.add(contacts.get(j));
+                    results.add(records.get(j));
                 }
             }
         }
