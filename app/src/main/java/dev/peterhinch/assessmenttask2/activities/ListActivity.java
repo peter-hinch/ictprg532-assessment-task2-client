@@ -1,7 +1,7 @@
 package dev.peterhinch.assessmenttask2.activities;
 
-import static dev.peterhinch.assessmenttask2.lib.MyHash.SORT_ASC;
-import static dev.peterhinch.assessmenttask2.lib.MyHash.SORT_DESC;
+import static dev.peterhinch.assessmenttask2.viewmodels.MyHashViewModel.SORT_ASC;
+import static dev.peterhinch.assessmenttask2.viewmodels.MyHashViewModel.SORT_DESC;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,29 +22,21 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import dev.peterhinch.assessmenttask2.R;
 import dev.peterhinch.assessmenttask2.lib.ListRecyclerViewAdapter;
-import dev.peterhinch.assessmenttask2.retrofit.RetrofitServices;
 import dev.peterhinch.assessmenttask2.room.RecordDb;
-import dev.peterhinch.assessmenttask2.lib.MyHash;
 import dev.peterhinch.assessmenttask2.room.entities.Record;
 import dev.peterhinch.assessmenttask2.viewmodels.MyHashViewModel;
 
-public class ListActivity extends AppCompatActivity
-        implements RetrofitServices.ResultsHandler {
+public class ListActivity extends AppCompatActivity {
     private final String TAG = this.getClass().getSimpleName();
 
     // Declare the ViewModel holding data from the database.
-    private MyHashViewModel hashTable;
+    private MyHashViewModel hashViewModel;
 
-    // Declare the RecyclerView.
-    ArrayList<Record> recyclerViewData;
-    private RecyclerView listRecyclerView;
-    private ListRecyclerViewAdapter adapter;
+    private boolean sortOrder = SORT_ASC;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -55,42 +47,25 @@ public class ListActivity extends AppCompatActivity
         // Retrieve the data passed in with the bundle.
         Bundle bundle = getIntent().getExtras();
         // Set the search query string using bundle contents.
-        String query;
+        String query = "";
         if (bundle != null) {
             query = bundle.getString("query", "");
             Log.d(TAG, query);
         }
 
-        //RetrofitServices.getInstance().RecordCreate(new Record("Peter", "Hinch", "2021-10-15"), this);
-        //RetrofitServices.getInstance().RecordReadOne(1, this);
-        RetrofitServices.getInstance().RecordReadAll(this);
-        //RetrofitServices.getInstance().RecordUpdate(1, new Record("Peter2", "Hinch2", "2021-10-16"), this);
-        //RetrofitServices.getInstance().RecordDelete(1, this);
-
-        // Initialise the database
-        RecordDb.initData(this);
-
         // Create the ViewModelProvider for MyHashViewModel
-        hashTable = new ViewModelProvider(this).get(MyHashViewModel.class);
-        if (hashTable.myHash == null) {
-            // Retrieve data from the database and hash that data.
-            ArrayList<Record> allRecords = (ArrayList<Record>) RecordDb
-                    .getInstance(this).recordDao().getAllRecords();
-            hashTable.myHash = new MyHash();
-            hashTable.myHash.buildHashTable(allRecords);
-        } else {
-            Log.d(TAG, "ViewModel created.");
-        }
-
-        // Define the data for the recycler view.
-        recyclerViewData = hashTable.myHash.toList(SORT_ASC);
+        hashViewModel = new ViewModelProvider(this).get(MyHashViewModel.class);
 
         // Set the data for the recycler view.
-        listRecyclerView = findViewById(R.id.list_recyclerView);
+        RecyclerView listRecyclerView = findViewById(R.id.list_recyclerView);
         // Create and set the adapter, then set the layout manager.
-        adapter = new ListRecyclerViewAdapter(recyclerViewData);
+        ListRecyclerViewAdapter adapter = new ListRecyclerViewAdapter(
+                hashViewModel.getRecords(this, sortOrder, query)
+        );
         listRecyclerView.setAdapter(adapter);
         listRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        // adapter.notifyDataSetChanged();
 
         // Set the drag listener for item deletion.
         deleteDrag();
@@ -103,23 +78,23 @@ public class ListActivity extends AppCompatActivity
         addClick();
 
         // Set the click functions for the index buttons.
-        setIndexClickListeners();
+        setIndexClickListeners(listRecyclerView);
     }
 
     // Use the key provided to calculate the offset for the recycler view.
     // TODO - Calculate correct offset for list in descending order.
-    private void navBtnClick(int key) {
+    private void navBtnClick(int key, RecyclerView rv) {
         if (key < 0 || key > 26) {
             return;
         }
 
         // Calculate the offset based on the key provided.
-        int offset = hashTable.myHash.calcOffsetByKey(key);
+        int offset = hashViewModel.myHash.calcOffsetByKey(key);
         Log.d(TAG, "Offset for key: " + key + " is: " + offset);
 
         // Use the offset to scroll the view to that location.
         ((LinearLayoutManager) Objects.requireNonNull(
-                listRecyclerView.getLayoutManager()))
+                rv.getLayoutManager()))
                 .scrollToPositionWithOffset(offset, 0);
     }
 
@@ -139,8 +114,9 @@ public class ListActivity extends AppCompatActivity
         FloatingActionButton btnSortAsc = findViewById(R.id.list_fabMini_sortAsc);
         btnSortAsc.setOnClickListener(view -> {
             // TODO - Ensure current data is displayed.
-            ListActivity.this.adapter.reloadList(hashTable.myHash.toList(SORT_ASC));
-            updateIndexLabels(SORT_ASC);
+            sortOrder = SORT_ASC;
+            hashViewModel.myHash.toList(false);
+            updateIndexLabels(false);
         });
     }
 
@@ -149,8 +125,9 @@ public class ListActivity extends AppCompatActivity
         FloatingActionButton btnSortDesc = findViewById(R.id.list_fabMini_sortDesc);
         btnSortDesc.setOnClickListener(view -> {
             // TODO - Ensure current data is displayed.
-            ListActivity.this.adapter.reloadList(hashTable.myHash.toList(SORT_DESC));
-            updateIndexLabels(SORT_DESC);
+            sortOrder = SORT_DESC;
+            hashViewModel.myHash.toList(true);
+            updateIndexLabels(true);
         });
     }
 
@@ -217,8 +194,8 @@ public class ListActivity extends AppCompatActivity
 
                     // Refresh the recycler view to reflect database change using
                     // the position.
-                    recyclerViewData.remove(itemPosition);
-                    adapter.notifyItemRemoved(itemPosition);
+                    //recyclerViewData.remove(itemPosition);
+                    //adapter.notifyItemRemoved(itemPosition);
 
                     // Change the icon for the delete button back to original icon.
                     btnDelete.setImageDrawable(AppCompatResources.getDrawable(
@@ -233,8 +210,8 @@ public class ListActivity extends AppCompatActivity
         });
     }
 
-    private void updateIndexLabels(boolean reverse) {
-        // Create a Sting[] for the button labels using the string array defined
+    private void updateIndexLabels(boolean sortOrder) {
+        // Create a String[] for the button labels using the string array defined
         // in strings.xml .
         String[] indexLabels = getResources().getStringArray(R.array.list_buttons_asc);
 
@@ -243,7 +220,7 @@ public class ListActivity extends AppCompatActivity
             int buttonId = getResources().getIdentifier("list_button_" + i, "id", getPackageName());
             Button indexButton = findViewById(buttonId);
 
-            if (!reverse) {
+            if (!sortOrder) {
                 indexButton.setText(indexLabels[i]);
             } else {
                 indexButton.setText(indexLabels[(indexLabels.length - 1) - i]);
@@ -256,44 +233,14 @@ public class ListActivity extends AppCompatActivity
     // determine the id value for each. Buttons have been renamed numerically
     // to simplify the iteration.
     // Reference: https://stackoverflow.com/questions/22639218/how-to-get-all-buttons-ids-in-one-time-on-android
-    private void setIndexClickListeners() {
+    private void setIndexClickListeners(RecyclerView recyclerView) {
         // Set the number of buttons to be set according to the string array
         // defined in strings.xml .
         int indexLabelsQty = getResources().getStringArray(R.array.list_buttons_asc).length;
         for(int i = 0; i < indexLabelsQty; i++) {
             int buttonId = getResources().getIdentifier("list_button_" + i, "id", getPackageName());
             int buttonKey = i;
-            findViewById(buttonId).setOnClickListener(v -> ListActivity.this.navBtnClick(buttonKey));
+            findViewById(buttonId).setOnClickListener(v -> ListActivity.this.navBtnClick(buttonKey, recyclerView));
         }
-    }
-
-    @Override
-    public void CreateOnResponseHandler(Record record) {
-        Log.d(TAG, record + " received by ListActivity CreateOnResponseHandler.");
-    }
-
-    @Override
-    public void ReadOneOnResponseHandler(Record record) {
-        Log.d(TAG, record + " received by ListActivity CreateOnResponseHandler.");
-    }
-
-    @Override
-    public void ReadAllOnResponseHandler(List<Record> recordList) {
-        Log.d(TAG, recordList + " received by ListActivity CreateOnResponseHandler.");
-    }
-
-    @Override
-    public void UpdateOnResponseHandler() {
-        Log.d(TAG, "Update received by ListActivity CreateOnResponseHandler.");
-    }
-
-    @Override
-    public void DeleteOnResponseHandler(Record record) {
-        Log.d(TAG, record + " received by ListActivity CreateOnResponseHandler.");
-    }
-
-    @Override
-    public void OnFailureHandler(Throwable throwable) {
-        Log.d(TAG, "Failure received: " + throwable.toString());
     }
 }
