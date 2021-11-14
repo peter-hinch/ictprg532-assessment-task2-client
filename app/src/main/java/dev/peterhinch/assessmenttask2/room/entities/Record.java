@@ -1,9 +1,11 @@
 package dev.peterhinch.assessmenttask2.room.entities;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
 
 import java.util.Date;
 
@@ -23,6 +25,7 @@ public class Record {
     public String phone;
 
     @ColumnInfo(name = "date")
+    @TypeConverters({Converters.class})
     public Date date;
 
     public Record() { }
@@ -84,5 +87,15 @@ public class Record {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "id: " + this.id +
+                "\nheading: " + this.heading +
+                "\ndescription: " + this.description +
+                "\nphone: " + this.phone +
+                "\ndate: " + this.date;
     }
 }
