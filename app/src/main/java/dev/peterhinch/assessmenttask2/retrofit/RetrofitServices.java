@@ -25,7 +25,7 @@ public class RetrofitServices {
 
     // Private constructor only accessible from this class.
     private RetrofitServices() {
-        // GsonBuilder allows a means to specify the stored date format
+        // GsonBuilder .setDateFormat() is used to specify the date format.
         // Reference: https://futurestud.io/tutorials/retrofit-2-adding-customizing-the-gson-converter
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ss")
