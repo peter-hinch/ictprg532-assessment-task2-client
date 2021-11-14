@@ -23,16 +23,19 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import dev.peterhinch.assessmenttask2.R;
 import dev.peterhinch.assessmenttask2.lib.ListRecyclerViewAdapter;
+import dev.peterhinch.assessmenttask2.retrofit.RetrofitServices;
 import dev.peterhinch.assessmenttask2.room.RecordDb;
 import dev.peterhinch.assessmenttask2.lib.MyHash;
 import dev.peterhinch.assessmenttask2.room.entities.Record;
 import dev.peterhinch.assessmenttask2.viewmodels.MyHashViewModel;
 
-public class ListActivity extends AppCompatActivity {
+public class ListActivity extends AppCompatActivity
+        implements RetrofitServices.ResultsHandler {
     private final String TAG = this.getClass().getSimpleName();
 
     // Declare the ViewModel holding data from the database.
@@ -49,10 +52,19 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
+        // Retrieve the data passed in with the bundle.
+        Bundle bundle = getIntent().getExtras();
+        // Set the search query string using bundle contents.
+        String query;
+        if (bundle != null) {
+            query = bundle.getString("query", "");
+            Log.d(TAG, query);
+        }
+
         // TODO - Add integration with Rest API
         //RetrofitServices.getInstance().RecordCreate(new Record("Peter", "Hinch", "2021-10-15"), this);
         //RetrofitServices.getInstance().RecordReadOne(1, this);
-        //RetrofitServices.getInstance().RecordReadAll(this);
+        RetrofitServices.getInstance().RecordReadAll(this);
         //RetrofitServices.getInstance().RecordUpdate(1, new Record("Peter2", "Hinch2", "2021-10-16"), this);
         //RetrofitServices.getInstance().RecordDelete(1, this);
 
@@ -254,5 +266,35 @@ public class ListActivity extends AppCompatActivity {
             int buttonKey = i;
             findViewById(buttonId).setOnClickListener(v -> ListActivity.this.navBtnClick(buttonKey));
         }
+    }
+
+    @Override
+    public void CreateOnResponseHandler(Record record) {
+        Log.d(TAG, record + " received by ListActivity CreateOnResponseHandler.");
+    }
+
+    @Override
+    public void ReadOneOnResponseHandler(Record record) {
+        Log.d(TAG, record + " received by ListActivity CreateOnResponseHandler.");
+    }
+
+    @Override
+    public void ReadAllOnResponseHandler(List<Record> recordList) {
+        Log.d(TAG, recordList + " received by ListActivity CreateOnResponseHandler.");
+    }
+
+    @Override
+    public void UpdateOnResponseHandler() {
+        Log.d(TAG, "Update received by ListActivity CreateOnResponseHandler.");
+    }
+
+    @Override
+    public void DeleteOnResponseHandler(Record record) {
+        Log.d(TAG, record + " received by ListActivity CreateOnResponseHandler.");
+    }
+
+    @Override
+    public void OnFailureHandler() {
+        Log.d(TAG, "Failure received by ListActivity CreateOnResponseHandler.");
     }
 }
