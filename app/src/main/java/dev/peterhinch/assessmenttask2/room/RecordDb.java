@@ -1,11 +1,14 @@
 package dev.peterhinch.assessmenttask2.room;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
+
+import java.util.List;
 
 import dev.peterhinch.assessmenttask2.room.entities.Converters;
 import dev.peterhinch.assessmenttask2.room.entities.Record;
@@ -38,24 +41,33 @@ public abstract class RecordDb extends RoomDatabase {
         return recordDb;
     }
 
-    // Initialise data in the database.
-    public static int initData(final Context context) {
+    // Initialise data in the local Room database.
+    public static int initData(final Context context, List<Record> records) {
         RecordDb db = getInstance(context);
+
+        try {
+
+        }
+        catch (Exception ex) {
+            Log.e(TAG, "Unable to initialise database.");
+        }
+
         return db.recordDao().getAllRecords().size();
     }
 
-    // Add a Record to the database.
+    // Add a Record to the local Room database.
     public static void addRecord(final Context context, Record record) {
         RecordDb db = getInstance(context);
         db.recordDao().insertRecords(record);
     }
 
-    // Update a Record in the database.
+    // Update a Record in the local Room database.
     public static void updateRecord(final Context context, Record record) {
         RecordDb db = getInstance(context);
         db.recordDao().updateRecords(record);
     }
 
+    // Find a Record with the specified id in the local Room database.
     public static Record findRecordById(final Context context, int id) {
         Record record;
         RecordDb db = getInstance(context);
@@ -63,9 +75,15 @@ public abstract class RecordDb extends RoomDatabase {
         return record;
     }
 
-    // Delete a Record from the database.
+    // Delete a Record from the local Room database.
     public static void deleteRecord(final Context context, Record record) {
         RecordDb db = getInstance(context);
         db.recordDao().deleteRecords(record);
+    }
+
+    // Delete all Records from the local Room database.
+    public static void deleteAllRecords(final Context context) {
+        RecordDb db = getInstance(context);
+        db.recordDao().clearTable();
     }
 }
