@@ -1,5 +1,7 @@
 package dev.peterhinch.assessmenttask2.room.entities;
 
+import android.util.Log;
+
 import androidx.room.TypeConverter;
 
 import java.util.Date;
@@ -10,13 +12,17 @@ import java.util.Date;
 // Reference: https://stackoverflow.com/questions/50313525/room-using-date-field
 // Reference: https://developer.android.com/training/data-storage/room/referencing-data
 public class Converters {
+    private static final String TAG = "Converters";
+
     @TypeConverter
     public static Date fromTimestamp(Long longDate) {
+        Log.d(TAG, "fromTimestamp(" + longDate + ") will return " + new Date(longDate));
         return longDate == null ? null : new Date(longDate);
     }
 
     @TypeConverter
     public static Long dateToTimestamp(Date date) {
+        Log.d(TAG, "dateToTimestamp(" + date + ") will return " + date.getTime());
         return date == null ? null : date.getTime();
     }
 }

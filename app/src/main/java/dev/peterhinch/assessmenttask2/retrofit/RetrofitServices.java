@@ -4,6 +4,9 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.util.List;
 
 import dev.peterhinch.assessmenttask2.room.entities.Record;
@@ -22,9 +25,15 @@ public class RetrofitServices {
 
     // Private constructor only accessible from this class.
     private RetrofitServices() {
+        // GsonBuilder allows a means to specify the stored date format
+        // Reference: https://futurestud.io/tutorials/retrofit-2-adding-customizing-the-gson-converter
+        Gson gson = new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+                .create();
+
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://ip:port/api/")
-                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl("http://192.168.65.1:44327/api/")
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         service = retrofit.create(RemoteRecordDb.class);
     }
@@ -58,7 +67,7 @@ public class RetrofitServices {
             // Call API - with failed results.
             @Override
             public void onFailure(@NonNull Call<Record> call, @NonNull Throwable t) {
-                resultsHandler.OnFailureHandler();
+                resultsHandler.OnFailureHandler(t);
             }
         });
     }
@@ -83,7 +92,7 @@ public class RetrofitServices {
             // Call API - with failed results.
             @Override
             public void onFailure(@NonNull Call<Record> call, @NonNull Throwable t) {
-                resultsHandler.OnFailureHandler();
+                resultsHandler.OnFailureHandler(t);
             }
         });
     }
@@ -108,7 +117,7 @@ public class RetrofitServices {
             // Call API - with failed results.
             @Override
             public void onFailure(@NonNull Call<List<Record>> call, @NonNull Throwable t) {
-                resultsHandler.OnFailureHandler();
+                resultsHandler.OnFailureHandler(t);
             }
         });
     }
@@ -133,7 +142,7 @@ public class RetrofitServices {
             // Call API - with failed results.
             @Override
             public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
-                resultsHandler.OnFailureHandler();
+                resultsHandler.OnFailureHandler(t);
             }
         });
     }
@@ -158,7 +167,7 @@ public class RetrofitServices {
             // Call API - with successful results.
             @Override
             public void onFailure(@NonNull Call<Record> call, @NonNull Throwable t) {
-                resultsHandler.OnFailureHandler();
+                resultsHandler.OnFailureHandler(t);
             }
         });
     }
@@ -170,6 +179,6 @@ public class RetrofitServices {
         void ReadAllOnResponseHandler(List<Record> recordList);
         void UpdateOnResponseHandler();
         void DeleteOnResponseHandler(Record record);
-        void OnFailureHandler();
+        void OnFailureHandler(Throwable throwable);
     }
 }
