@@ -1,7 +1,6 @@
 package dev.peterhinch.assessmenttask2.room;
 
 import android.content.Context;
-import android.util.Log;
 
 import androidx.room.Database;
 import androidx.room.Room;
@@ -41,30 +40,10 @@ public abstract class RecordDb extends RoomDatabase {
         return recordDb;
     }
 
-    // Initialise data in the local Room database.
-    public static int initData(final Context context, List<Record> records) {
-        RecordDb db = getInstance(context);
-
-        try {
-
-        }
-        catch (Exception ex) {
-            Log.e(TAG, "Unable to initialise database.");
-        }
-
-        return db.recordDao().getAllRecords().size();
-    }
-
     // Add a Record to the local Room database.
     public static void addRecord(final Context context, Record record) {
         RecordDb db = getInstance(context);
         db.recordDao().insertRecords(record);
-    }
-
-    // Update a Record in the local Room database.
-    public static void updateRecord(final Context context, Record record) {
-        RecordDb db = getInstance(context);
-        db.recordDao().updateRecords(record);
     }
 
     // Find a Record with the specified id in the local Room database.
@@ -73,6 +52,18 @@ public abstract class RecordDb extends RoomDatabase {
         RecordDb db = getInstance(context);
         record = db.recordDao().getRecordById(id);
         return record;
+    }
+
+    // Read all Records from the local Room database.
+    public static List<Record> readAllRecords(Context context) {
+        RecordDb db = getInstance(context);
+        return db.recordDao().getAllRecords();
+    }
+
+    // Update a Record in the local Room database.
+    public static void updateRecord(final Context context, Record record) {
+        RecordDb db = getInstance(context);
+        db.recordDao().updateRecords(record);
     }
 
     // Delete a Record from the local Room database.
