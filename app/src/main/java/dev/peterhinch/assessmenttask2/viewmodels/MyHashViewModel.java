@@ -46,12 +46,12 @@ public class MyHashViewModel extends ViewModel
         RecordDb.addRecord(context, newRecord);
     }
 
-    public void updateRecord(Context context, Record updatedRecord) {
+    public void updateRecord(Context context, int index, Record updatedRecord) {
         RecordDb.updateRecord(context, updatedRecord);
     }
 
-    public void removeRecord(Context context, Record record) {
-        RecordDb.deleteRecord(context, record);
+    public void removeRecord(Context context, int index) {
+        //RecordDb.deleteRecord(context, record);
     }
 
     public void clearRecords(Context context) {
@@ -62,17 +62,8 @@ public class MyHashViewModel extends ViewModel
         // Retrieve data from the database and hash that data.
         try {
             RetrofitServices.getInstance().RecordReadAll(this);
-            if ((serverRecordList != null) && (serverRecordList.size() > 0)) {
-                // Remove all records in the local database.
-                RecordDb.deleteAllRecords(context);
-                // Populate the local database with the records returned from
-                // the server.
-                for (Record r : serverRecordList) {
-                    RecordDb.addRecord(context, r);
-                }
-            }
             localRecordList = (ArrayList<Record>) RecordDb.readAllRecords(context);
-        } catch (Exception ex) {
+         } catch (Exception ex) {
             Log.d(TAG, "Exception occurred while reading in records: " + ex);
         }
         myHash = new MyHash();
@@ -92,7 +83,9 @@ public class MyHashViewModel extends ViewModel
     @Override
     public void ReadAllOnResponseHandler(@NonNull List<Record> returnedRecordList) {
         Log.d(TAG, returnedRecordList.size() + " records received by ListActivity ReadAllOnResponseHandler.");
-        serverRecordList = (ArrayList<Record>) returnedRecordList;
+        for (Record r : returnedRecordList) {
+            RecordDb.addRecord(null, r);
+        }
     }
 
     @Override
