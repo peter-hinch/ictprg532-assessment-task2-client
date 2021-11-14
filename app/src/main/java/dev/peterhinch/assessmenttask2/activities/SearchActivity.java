@@ -21,22 +21,20 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        Context context = getApplicationContext();
-
         // Define the editText view for the search query.
         editTextQuery = findViewById(R.id.search_editText_searchQuery);
 
         // Set the click function for the 'Search' and 'Cancel' buttons.
-        searchClick(context);
-        cancelClick(context);
+        searchClick();
+        cancelClick();
     }
 
-    private void searchClick(Context context) {
+    private void searchClick() {
         Button btnSearch = findViewById(R.id.search_button_search);
         btnSearch.setOnClickListener(view -> {
             Log.d(TAG, "Search button pressed.");
             String query = editTextQuery.getText().toString();
-            Intent intent = new Intent(context, ListActivity.class);
+            Intent intent = new Intent(this, ListActivity.class);
 
             // Create a bundle to pass the search query back to the list activity.
             Bundle bundle = new Bundle();
@@ -47,15 +45,15 @@ public class SearchActivity extends AppCompatActivity {
             }
             intent.putExtras(bundle);
 
-            context.startActivity(intent);
+            startActivity(intent);
         });
     }
 
-    private void cancelClick(Context context) {
+    private void cancelClick() {
         Button btnCancel = findViewById(R.id.search_button_cancel);
         btnCancel.setOnClickListener(view -> {
             Log.d(TAG, "Cancel button pressed.");
-            Intent intent = new Intent(context, ListActivity.class);
+            Intent intent = new Intent(this, ListActivity.class);
 
             // Create a bundle to ensure no search query is passed back to the
             // list activity.
@@ -63,7 +61,7 @@ public class SearchActivity extends AppCompatActivity {
             bundle.remove("query");
             intent.putExtras(bundle);
 
-            context.startActivity(intent);
+            startActivity(intent);
         });
     }
 }
