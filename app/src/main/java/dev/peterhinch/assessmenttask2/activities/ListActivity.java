@@ -26,8 +26,6 @@ import java.util.Objects;
 
 import dev.peterhinch.assessmenttask2.R;
 import dev.peterhinch.assessmenttask2.lib.ListRecyclerViewAdapter;
-import dev.peterhinch.assessmenttask2.room.RecordDb;
-import dev.peterhinch.assessmenttask2.room.entities.Record;
 import dev.peterhinch.assessmenttask2.viewmodels.MyHashViewModel;
 
 public class ListActivity extends AppCompatActivity {
@@ -35,8 +33,10 @@ public class ListActivity extends AppCompatActivity {
 
     // Declare the ViewModel holding data from the database.
     private MyHashViewModel hashViewModel;
+    private ListRecyclerViewAdapter adapter;
 
     private boolean sortOrder = SORT_ASC;
+    private String searchQuery = "";
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -47,10 +47,9 @@ public class ListActivity extends AppCompatActivity {
         // Retrieve the data passed in with the bundle.
         Bundle bundle = getIntent().getExtras();
         // Set the search query string using bundle contents.
-        String query = "";
         if (bundle != null) {
-            query = bundle.getString("query", "");
-            Log.d(TAG, query);
+            searchQuery = bundle.getString("query", "");
+            Log.d(TAG, searchQuery);
         }
 
         // Create the ViewModelProvider for MyHashViewModel
@@ -59,13 +58,13 @@ public class ListActivity extends AppCompatActivity {
         // Set the data for the recycler view.
         RecyclerView listRecyclerView = findViewById(R.id.list_recyclerView);
         // Create and set the adapter, then set the layout manager.
-        ListRecyclerViewAdapter adapter = new ListRecyclerViewAdapter(
-                hashViewModel.getRecords(this, sortOrder, query)
+        adapter = new ListRecyclerViewAdapter(
+                hashViewModel.getRecords(this, sortOrder, searchQuery)
         );
         listRecyclerView.setAdapter(adapter);
         listRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // adapter.notifyDataSetChanged();
+        adapter.refreshList();
 
         // Set the drag listener for item deletion.
         deleteDrag();
@@ -115,8 +114,7 @@ public class ListActivity extends AppCompatActivity {
         btnSortAsc.setOnClickListener(view -> {
             // TODO - Ensure current data is displayed.
             sortOrder = SORT_ASC;
-            hashViewModel.myHash.toList(false);
-            updateIndexLabels(false);
+            updateSortOrder();
         });
     }
 
@@ -126,8 +124,7 @@ public class ListActivity extends AppCompatActivity {
         btnSortDesc.setOnClickListener(view -> {
             // TODO - Ensure current data is displayed.
             sortOrder = SORT_DESC;
-            hashViewModel.myHash.toList(true);
-            updateIndexLabels(true);
+            updateSortOrder();
         });
     }
 
@@ -188,14 +185,10 @@ public class ListActivity extends AppCompatActivity {
                     int recordId = Integer.parseInt(listItemId.getText().toString());
                     int itemPosition = Integer.parseInt(listItemPosition.getText().toString());
 
-                    // Find and delete the record from the database using the ID.
-                    Record recordToDelete = RecordDb.findRecordById(this, recordId);
-                    RecordDb.deleteRecord(this, recordToDelete);
-
-                    // Refresh the recycler view to reflect database change using
-                    // the position.
-                    //recyclerViewData.remove(itemPosition);
-                    //adapter.notifyItemRemoved(itemPosition);
+                    // Remove the record.
+                    hashViewModel.recordDelete(itemPosition);
+                    // Refresh the recycler view to reflect database change.
+                    adapter.recordDelete(itemPosition);
 
                     // Change the icon for the delete button back to original icon.
                     btnDelete.setImageDrawable(AppCompatResources.getDrawable(
@@ -208,6 +201,12 @@ public class ListActivity extends AppCompatActivity {
             }
             return false;
         });
+    }
+
+    private void updateSortOrder() {
+        hashViewModel.getRecords(this, sortOrder, searchQuery);
+        updateIndexLabels(sortOrder);
+        adapter.refreshList();
     }
 
     private void updateIndexLabels(boolean sortOrder) {
