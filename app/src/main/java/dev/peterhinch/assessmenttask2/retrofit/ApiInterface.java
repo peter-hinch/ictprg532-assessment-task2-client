@@ -19,15 +19,15 @@ public class ApiInterface
         try {
 
         } catch (Exception ex) {
-            Log.d("ApiInterface", "Exception occurred while creating record: " + ex);
+            Log.d(TAG, "Exception occurred while creating record: " + ex);
         }
     }
 
     public void recordReadOne(int recordId) {
         try {
-
+            RetrofitServices.getInstance().recordReadOne(recordId, this);
         } catch (Exception ex) {
-            Log.d("ApiInterface", "Exception occurred while reading record: " + ex);
+            Log.d(TAG, "Exception occurred while reading record: " + ex);
         }
     }
 
@@ -36,15 +36,15 @@ public class ApiInterface
         try {
             RetrofitServices.getInstance().recordReadAll(this);
         } catch (Exception ex) {
-            Log.d("ApiInterface", "Exception occurred while reading in records: " + ex);
+            Log.d(TAG, "Exception occurred while reading in records: " + ex);
         }
     }
 
     public void recordUpdate(int recordId, Record updatedRecord) {
         try {
-
+            RetrofitServices.getInstance().recordUpdate(recordId, updatedRecord, this);
         } catch (Exception ex) {
-            Log.d("ApiInterface", "Exception occurred while updating record: " + ex);
+            Log.d(TAG, "Exception occurred while updating record: " + ex);
         }
     }
 
@@ -52,7 +52,7 @@ public class ApiInterface
         try {
             RetrofitServices.getInstance().recordDelete(recordId, this);
         } catch (Exception ex) {
-            Log.d("ApiInterface", "Exception occurred while deleting record: " + ex);
+            Log.d(TAG, "Exception occurred while deleting record: " + ex);
         }
     }
 
