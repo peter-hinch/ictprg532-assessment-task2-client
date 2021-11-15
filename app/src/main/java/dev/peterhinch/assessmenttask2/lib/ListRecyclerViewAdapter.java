@@ -19,6 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import dev.peterhinch.assessmenttask2.R;
 import dev.peterhinch.assessmenttask2.activities.DetailActivity;
@@ -33,9 +34,8 @@ public class ListRecyclerViewAdapter
     // Declare a dataset.
     private ArrayList<Record> recordList;
 
-    // String pattern and date format for date display.
-    private final String pattern = "dd/MM/yyyy";
-    private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+    // Date format for date display.
+    private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.forLanguageTag("en_AU"));
 
     // Create a constructor for the adapter class and dataset property.
     public ListRecyclerViewAdapter(ArrayList<Record> recordList) {
@@ -128,10 +128,7 @@ public class ListRecyclerViewAdapter
 
         // Create a bundle to pass details into the detail activity.
         Bundle bundle = new Bundle();
-        bundle.putString("heading", holder.txtViewHeading.getText().toString());
-        bundle.putString("description", holder.txtViewDescription.getText().toString());
-        bundle.putString("phone", holder.txtViewPhone.getText().toString());
-        bundle.putString("date", holder.txtViewDate.getText().toString());
+        bundle.putInt("id", holder.id);
         intent.putExtras(bundle);
 
         context.startActivity(intent);
@@ -143,10 +140,7 @@ public class ListRecyclerViewAdapter
 
         // Create a bundle to pass details into the detail activity.
         Bundle bundle = new Bundle();
-        bundle.putString("heading", holder.txtViewHeading.getText().toString());
-        bundle.putString("description", holder.txtViewDescription.getText().toString());
-        bundle.putString("phone", holder.txtViewPhone.getText().toString());
-        bundle.putString("date", holder.txtViewDate.getText().toString());
+        bundle.putInt("id", holder.id);
         intent.putExtras(bundle);
 
         context.startActivity(intent);
