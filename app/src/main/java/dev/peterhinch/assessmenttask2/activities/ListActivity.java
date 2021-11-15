@@ -52,7 +52,7 @@ public class ListActivity extends AppCompatActivity {
         // Set the search query string using bundle contents.
         if (bundle != null) {
             searchQuery = bundle.getString("query");
-            Log.d(TAG, searchQuery);
+            Log.d(TAG, "Search query: " + searchQuery);
         }
 
         // Create the ViewModelProvider for MyHashViewModel
@@ -85,7 +85,6 @@ public class ListActivity extends AppCompatActivity {
     }
 
     // Use the key provided to calculate the offset for the recycler view.
-    // TODO - Calculate correct offset for list in descending order.
     private void navBtnClick(int key, RecyclerView rv) {
         if (key < 0 || key > 26) {
             return;
@@ -101,7 +100,6 @@ public class ListActivity extends AppCompatActivity {
                 .scrollToPositionWithOffset(offset, 0);
     }
 
-    // TODO - Add Search functionality.
     private void searchClick() {
         FloatingActionButton btnSearchSubmit = findViewById(R.id.list_fabMini_search);
         btnSearchSubmit.setOnClickListener(view -> {

@@ -36,7 +36,7 @@ public class MyHashViewModel extends ViewModel
         recyclerViewRecords = myHash.toList(order);
 
         // Filter to match search query.
-        if (!filterQuery.equals("")) {
+        if ((filterQuery != null) && (!filterQuery.equals(""))) {
             recyclerViewRecords = myHash.filter(filterQuery);
         }
 

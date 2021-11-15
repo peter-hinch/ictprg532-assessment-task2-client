@@ -38,10 +38,8 @@ public class SearchActivity extends AppCompatActivity {
 
             // Create a bundle to pass the search query back to the list activity.
             Bundle bundle = new Bundle();
-            if (query.equals("")) {
+            if (!query.equals("")) {
                 bundle.putString("query", query);
-            } else {
-                bundle.remove("query");
             }
             intent.putExtras(bundle);
 
