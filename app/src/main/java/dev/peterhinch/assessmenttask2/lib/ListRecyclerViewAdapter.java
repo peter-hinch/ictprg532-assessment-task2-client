@@ -43,7 +43,6 @@ public class ListRecyclerViewAdapter
     }
 
     public void refreshList() {
-        Log.d(TAG, "Adapter is holding " + recordList.size() + " values.");
         notifyDataSetChanged();
     }
 
