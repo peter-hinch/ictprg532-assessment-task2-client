@@ -90,10 +90,11 @@ public abstract class LocalRecordDb extends RoomDatabase {
     }
 
     // Delete a Record from the local Room database.
-    public static void recordDelete(final Context context, Record record) {
+    public static void recordDelete(final Context context, int recordId) {
         try {
             LocalRecordDb db = getInstance(context);
-            db.recordDao().deleteRecords(record);
+            Record recordToDelete = db.recordDao().getRecordById(recordId);
+            db.recordDao().deleteRecords(recordToDelete);
         } catch (Exception ex) {
             Log.d(TAG, "Exception occurred while deleting record: " + ex);
         }
