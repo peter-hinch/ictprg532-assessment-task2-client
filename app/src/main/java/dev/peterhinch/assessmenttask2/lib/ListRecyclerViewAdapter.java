@@ -42,8 +42,9 @@ public class ListRecyclerViewAdapter
         this.recordList = recordList;
     }
 
-    public void refreshList() {
-        notifyDataSetChanged();
+    public void reloadList(ArrayList<Record> recordList) {
+        this.recordList = recordList;
+        this.notifyDataSetChanged();
     }
 
     public void recordUpdate(int recordPosition) {

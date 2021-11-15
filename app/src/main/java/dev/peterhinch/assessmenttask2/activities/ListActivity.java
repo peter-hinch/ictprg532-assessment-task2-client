@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.ClipDescription;
 import android.content.Intent;
@@ -39,6 +40,7 @@ public class ListActivity extends AppCompatActivity {
     private boolean sortOrder = SORT_ASC;
     private String searchQuery = "";
 
+    @SuppressLint("NotifyDataSetChanged")
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +68,7 @@ public class ListActivity extends AppCompatActivity {
         listRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Refresh the ViewAdapter.
-        adapter.refreshList();
+        adapter.notifyDataSetChanged();
 
         // Set the drag listener for item deletion.
         deleteDrag();
@@ -209,11 +211,10 @@ public class ListActivity extends AppCompatActivity {
         });
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private void updateSortOrder() {
-        hashViewModel.getRecords(this, sortOrder, searchQuery);
         updateIndexLabels(sortOrder);
-        hashViewModel.reHashRecords();
-        adapter.refreshList();
+        ListActivity.this.adapter.reloadList(hashViewModel.myHash.toList(sortOrder));
     }
 
     private void updateIndexLabels(boolean sortOrder) {
