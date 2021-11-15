@@ -42,6 +42,15 @@ public class ListRecyclerViewAdapter
         this.recordList = recordList;
     }
 
+    public void refreshList() {
+        Log.d(TAG, "Adapter is holding " + recordList.size() + " values.");
+        notifyDataSetChanged();
+    }
+
+    public void recordDelete(int recordPosition) {
+        notifyItemRemoved(recordPosition);
+    }
+
     // Implement onCreateViewHolder, onBindViewHolder and getItemCount.
     // Implement onCreateViewHolder.
     @NonNull
