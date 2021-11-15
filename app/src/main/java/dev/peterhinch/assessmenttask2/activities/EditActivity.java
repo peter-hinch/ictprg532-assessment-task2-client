@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 import dev.peterhinch.assessmenttask2.R;
-import dev.peterhinch.assessmenttask2.room.RecordDb;
+import dev.peterhinch.assessmenttask2.room.LocalRecordDb;
 import dev.peterhinch.assessmenttask2.room.entities.Record;
 
 public class EditActivity extends AppCompatActivity {
@@ -71,7 +71,7 @@ public class EditActivity extends AppCompatActivity {
                 );
 
                 // Update the record in the database.
-                RecordDb.updateRecord(this, updatedRecord);
+                LocalRecordDb.recordUpdate(this, updatedRecord);
             }
             catch(Exception ex) {
                 Log.e(TAG, "Failed to update record.");
