@@ -47,6 +47,10 @@ public class ListRecyclerViewAdapter
         notifyDataSetChanged();
     }
 
+    public void recordUpdate(int recordPosition) {
+        notifyItemChanged(recordPosition);
+    }
+
     public void recordDelete(int recordPosition) {
         notifyItemRemoved(recordPosition);
     }

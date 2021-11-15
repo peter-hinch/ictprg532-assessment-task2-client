@@ -33,13 +33,23 @@ public class MyHashViewModel extends ViewModel {
         }
         // Adjust to suit display order.
         recyclerViewRecords = myHash.toList(order);
-        Log.d(TAG, "RecyclerView is holding " + recyclerViewRecords.size() + " values.");
         return recyclerViewRecords;
+    }
+
+    public void reHashRecords() {
+        myHash = new MyHash();
+        myHash.buildHashTable(recyclerViewRecords);
+    }
+
+    public void recordUpdate(int recordPosition, Record updatedRecord) {
+        recyclerViewRecords.remove(recordPosition);
+        recyclerViewRecords.add(recordPosition, updatedRecord);
+        reHashRecords();
     }
 
     public void recordDelete(int recordPosition) {
         recyclerViewRecords.remove(recordPosition);
-        Log.d(TAG, "RecyclerView is holding " + recyclerViewRecords.size() + " values.");
+        reHashRecords();
     }
 
     private void loadRecords(Context context) {
@@ -47,8 +57,7 @@ public class MyHashViewModel extends ViewModel {
         try {
             //RetrofitServices.getInstance().recordReadAll(this);
             recyclerViewRecords = (ArrayList<Record>) LocalRecordDb.recordReadAll(context);
-            myHash = new MyHash();
-            myHash.buildHashTable(recyclerViewRecords);
+            reHashRecords();
          } catch (Exception ex) {
             Log.d(TAG, "Exception occurred while reading in records: " + ex);
         }
