@@ -29,7 +29,7 @@ public class MyHashViewModel extends ViewModel {
         }
         // Filter to match search query.
         if (!filterQuery.equals("")) {
-            myHash.filter(filterQuery);
+            recyclerViewRecords = myHash.filter(filterQuery);
         }
         // Adjust to suit display order.
         recyclerViewRecords = myHash.toList(order);
@@ -55,7 +55,6 @@ public class MyHashViewModel extends ViewModel {
     private void loadRecords(Context context) {
         // Retrieve data from the database and hash that data.
         try {
-            //RetrofitServices.getInstance().recordReadAll(this);
             recyclerViewRecords = (ArrayList<Record>) LocalRecordDb.recordReadAll(context);
             reHashRecords();
          } catch (Exception ex) {
