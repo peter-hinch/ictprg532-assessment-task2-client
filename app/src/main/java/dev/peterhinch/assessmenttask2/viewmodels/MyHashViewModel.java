@@ -32,18 +32,15 @@ public class MyHashViewModel extends ViewModel
             recyclerViewRecords = new ArrayList<>();
             loadRecords(context);
         }
+        // Adjust to suit display order.
+        recyclerViewRecords = myHash.toList(order);
+
         // Filter to match search query.
         if (!filterQuery.equals("")) {
             recyclerViewRecords = myHash.filter(filterQuery);
         }
-        // Adjust to suit display order.
-        recyclerViewRecords = myHash.toList(order);
-        return recyclerViewRecords;
-    }
 
-    public void reHashRecords() {
-        myHash = new MyHash();
-        myHash.buildHashTable(recyclerViewRecords);
+        return recyclerViewRecords;
     }
 
     public void recordUpdate(int recordPosition, Record updatedRecord) {
@@ -71,6 +68,11 @@ public class MyHashViewModel extends ViewModel
          } catch (Exception ex) {
             Log.d(TAG, "Exception occurred while reading in records: " + ex);
         }
+    }
+
+    public void reHashRecords() {
+        myHash = new MyHash();
+        myHash.buildHashTable(recyclerViewRecords);
     }
 
     @Override
@@ -106,7 +108,8 @@ public class MyHashViewModel extends ViewModel
     @Override
     public void onFailureHandler(Throwable throwable) {
         if (throwable instanceof IOException) {
-            Log.d(TAG, "Failure received by OnFailureHandler: There is an issue with the connection.");
+            Log.d(TAG, "Failure received by OnFailureHandler: There is an issue " +
+                    "with the connection.");
         } else {
             Log.d(TAG, "Failure received by OnFailureHandler: " + throwable.toString());
         }
