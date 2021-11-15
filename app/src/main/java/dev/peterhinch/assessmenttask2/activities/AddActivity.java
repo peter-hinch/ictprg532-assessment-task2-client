@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 import dev.peterhinch.assessmenttask2.R;
-import dev.peterhinch.assessmenttask2.room.RecordDb;
+import dev.peterhinch.assessmenttask2.room.LocalRecordDb;
 import dev.peterhinch.assessmenttask2.room.entities.Record;
 
 public class AddActivity extends AppCompatActivity {
@@ -33,10 +33,10 @@ public class AddActivity extends AppCompatActivity {
         btnAdd.setOnClickListener(view -> {
             Log.d(TAG, "Add button pressed.");
 
-            EditText editTextHeading = (EditText)findViewById(R.id.add_editText_heading);
-            EditText editTextDescription = (EditText)findViewById(R.id.add_editText_description);
-            EditText editTextPhone = (EditText)findViewById(R.id.add_editText_phone);
-            EditText editTextDate = (EditText)findViewById(R.id.add_editText_date);
+            EditText editTextHeading = findViewById(R.id.add_editText_heading);
+            EditText editTextDescription = findViewById(R.id.add_editText_description);
+            EditText editTextPhone = findViewById(R.id.add_editText_phone);
+            EditText editTextDate = findViewById(R.id.add_editText_date);
 
             // Add a SimpleDateFormat
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.forLanguageTag("en_AU"));
@@ -51,7 +51,7 @@ public class AddActivity extends AppCompatActivity {
                 );
 
                 // Add the new record to the database.
-                RecordDb.addRecord(this, newRecord);
+                LocalRecordDb.recordCreate(this, newRecord);
             }
             catch(Exception ex) {
                 Log.e(TAG, "Failed to add a new record.");
