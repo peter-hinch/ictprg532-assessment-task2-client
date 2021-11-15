@@ -26,6 +26,7 @@ import java.util.Objects;
 
 import dev.peterhinch.assessmenttask2.R;
 import dev.peterhinch.assessmenttask2.lib.ListRecyclerViewAdapter;
+import dev.peterhinch.assessmenttask2.room.LocalRecordDb;
 import dev.peterhinch.assessmenttask2.viewmodels.MyHashViewModel;
 
 public class ListActivity extends AppCompatActivity {
@@ -48,7 +49,7 @@ public class ListActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         // Set the search query string using bundle contents.
         if (bundle != null) {
-            searchQuery = bundle.getString("query", "");
+            searchQuery = bundle.getString("query");
             Log.d(TAG, searchQuery);
         }
 
@@ -64,6 +65,7 @@ public class ListActivity extends AppCompatActivity {
         listRecyclerView.setAdapter(adapter);
         listRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        // Refresh the ViewAdapter.
         adapter.refreshList();
 
         // Set the drag listener for item deletion.
@@ -112,7 +114,6 @@ public class ListActivity extends AppCompatActivity {
         // Buttons for sort and search.
         FloatingActionButton btnSortAsc = findViewById(R.id.list_fabMini_sortAsc);
         btnSortAsc.setOnClickListener(view -> {
-            // TODO - Ensure current data is displayed.
             sortOrder = SORT_ASC;
             updateSortOrder();
         });
@@ -122,7 +123,6 @@ public class ListActivity extends AppCompatActivity {
     private void sortDescClick() {
         FloatingActionButton btnSortDesc = findViewById(R.id.list_fabMini_sortDesc);
         btnSortDesc.setOnClickListener(view -> {
-            // TODO - Ensure current data is displayed.
             sortOrder = SORT_DESC;
             updateSortOrder();
         });
@@ -185,10 +185,16 @@ public class ListActivity extends AppCompatActivity {
                     int recordId = Integer.parseInt(listItemId.getText().toString());
                     int itemPosition = Integer.parseInt(listItemPosition.getText().toString());
 
-                    // Remove the record.
-                    hashViewModel.recordDelete(itemPosition);
-                    // Refresh the recycler view to reflect database change.
-                    adapter.recordDelete(itemPosition);
+                    // Attempt to delete the record.
+                    try {
+                        // Delete from the local database.
+                        LocalRecordDb.recordDelete(this, recordId);
+                        // Refresh view model and adapter to reflect database change.
+                        hashViewModel.recordDelete(itemPosition);
+                        adapter.recordDelete(itemPosition);
+                    } catch (Exception ex) {
+                        Log.d(TAG, "There was an issue deleting the record: " + ex);
+                    }
 
                     // Change the icon for the delete button back to original icon.
                     btnDelete.setImageDrawable(AppCompatResources.getDrawable(
@@ -206,6 +212,7 @@ public class ListActivity extends AppCompatActivity {
     private void updateSortOrder() {
         hashViewModel.getRecords(this, sortOrder, searchQuery);
         updateIndexLabels(sortOrder);
+        hashViewModel.reHashRecords();
         adapter.refreshList();
     }
 
