@@ -47,7 +47,7 @@ public class RetrofitServices {
     }
 
     // Create.
-    public void RecordCreate(Record record, final ResultsHandler resultsHandler) {
+    public void recordCreate(@NonNull Record record, final ResultsHandler resultsHandler) {
         // Prepare an API call.
         record.setId(0);
         Call<Record> recordCreate = service.RecordCreate(record);
@@ -58,7 +58,7 @@ public class RetrofitServices {
             public void onResponse(@NonNull Call<Record> call, @NonNull Response<Record> response) {
                 try {
                     Record record = response.body();
-                    resultsHandler.CreateOnResponseHandler(record);
+                    resultsHandler.createOnResponseHandler(record);
                 }
                 catch (Exception ex) {
                     Log.e(TAG, "An exception occurred: " + ex);
@@ -67,13 +67,13 @@ public class RetrofitServices {
             // Call API - with failed results.
             @Override
             public void onFailure(@NonNull Call<Record> call, @NonNull Throwable t) {
-                resultsHandler.OnFailureHandler(t);
+                resultsHandler.onFailureHandler(t);
             }
         });
     }
 
     // Read one.
-    public void RecordReadOne(int id, final ResultsHandler resultsHandler) {
+    public void recordReadOne(int id, final ResultsHandler resultsHandler) {
         // Prepare an API call.
         Call<Record> recordReadOne = service.Record(id);
         // Call the API.
@@ -83,7 +83,7 @@ public class RetrofitServices {
             public void onResponse(@NonNull Call<Record> call, @NonNull Response<Record> response) {
                 try {
                     Record record = response.body();
-                    resultsHandler.ReadOneOnResponseHandler(record);
+                    resultsHandler.readOneOnResponseHandler(record);
                 }
                 catch (Exception ex) {
                     Log.e(TAG, "An exception occurred: " + ex);
@@ -92,13 +92,13 @@ public class RetrofitServices {
             // Call API - with failed results.
             @Override
             public void onFailure(@NonNull Call<Record> call, @NonNull Throwable t) {
-                resultsHandler.OnFailureHandler(t);
+                resultsHandler.onFailureHandler(t);
             }
         });
     }
 
     // Read all.
-    public void RecordReadAll(final ResultsHandler resultsHandler) {
+    public void recordReadAll(final ResultsHandler resultsHandler) {
         // Prepare an API call.
         Call<List<Record>> recordReadAll = service.RecordAll();
         // Call the API.
@@ -108,7 +108,7 @@ public class RetrofitServices {
             public void onResponse(@NonNull Call<List<Record>> call, @NonNull Response<List<Record>> response) {
                 try {
                     List<Record> recordList = response.body();
-                    resultsHandler.ReadAllOnResponseHandler(recordList);
+                    resultsHandler.readAllOnResponseHandler(recordList);
                 }
                 catch (Exception ex) {
                     Log.e(TAG, "An exception occurred: " + ex);
@@ -117,13 +117,13 @@ public class RetrofitServices {
             // Call API - with failed results.
             @Override
             public void onFailure(@NonNull Call<List<Record>> call, @NonNull Throwable t) {
-                resultsHandler.OnFailureHandler(t);
+                resultsHandler.onFailureHandler(t);
             }
         });
     }
 
     // Update.
-    public void RecordUpdate(int id, Record record, final ResultsHandler resultsHandler) {
+    public void recordUpdate(int id, @NonNull Record record, final ResultsHandler resultsHandler) {
         // Prepare an API call.
         record.setId(id);
         Call<Void> recordUpdate = service.RecordUpdate(id, record);
@@ -133,7 +133,7 @@ public class RetrofitServices {
             @Override
             public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                 try {
-                    resultsHandler.UpdateOnResponseHandler();
+                    resultsHandler.updateOnResponseHandler();
                 }
                 catch (Exception ex) {
                     Log.e(TAG, "An exception occurred: " + ex);
@@ -142,13 +142,13 @@ public class RetrofitServices {
             // Call API - with failed results.
             @Override
             public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
-                resultsHandler.OnFailureHandler(t);
+                resultsHandler.onFailureHandler(t);
             }
         });
     }
 
     // Delete.
-    public void RecordDelete(int id, final ResultsHandler resultsHandler) {
+    public void recordDelete(int id, final ResultsHandler resultsHandler) {
         // Prepare an API call.
         Call<Record> recordDelete = service.RecordDelete(id);
         // Call the API.
@@ -158,7 +158,7 @@ public class RetrofitServices {
             public void onResponse(@NonNull Call<Record> call, @NonNull Response<Record> response) {
                 try {
                     Record record= response.body();
-                    resultsHandler.DeleteOnResponseHandler(record);
+                    resultsHandler.deleteOnResponseHandler(record);
                 }
                 catch (Exception ex) {
                     Log.e(TAG, "An exception occurred: " + ex);
@@ -167,18 +167,18 @@ public class RetrofitServices {
             // Call API - with successful results.
             @Override
             public void onFailure(@NonNull Call<Record> call, @NonNull Throwable t) {
-                resultsHandler.OnFailureHandler(t);
+                resultsHandler.onFailureHandler(t);
             }
         });
     }
 
     // Provide an interface for interaction with other classes.
     public interface ResultsHandler {
-        void CreateOnResponseHandler(Record record);
-        void ReadOneOnResponseHandler(Record record);
-        void ReadAllOnResponseHandler(List<Record> recordList);
-        void UpdateOnResponseHandler();
-        void DeleteOnResponseHandler(Record record);
-        void OnFailureHandler(Throwable throwable);
+        void createOnResponseHandler(Record record);
+        void readOneOnResponseHandler(Record record);
+        void readAllOnResponseHandler(List<Record> recordList);
+        void updateOnResponseHandler();
+        void deleteOnResponseHandler(Record record);
+        void onFailureHandler(Throwable throwable);
     }
 }
