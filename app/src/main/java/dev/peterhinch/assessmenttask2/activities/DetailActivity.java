@@ -18,7 +18,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 import dev.peterhinch.assessmenttask2.R;
+import dev.peterhinch.assessmenttask2.room.LocalRecordDb;
+import dev.peterhinch.assessmenttask2.room.entities.Record;
 
 public class DetailActivity extends AppCompatActivity {
     private final String TAG = this.getClass().getSimpleName();
@@ -31,6 +36,12 @@ public class DetailActivity extends AppCompatActivity {
     EditText editTextDescription;
     EditText editTextPhone;
     EditText editTextDate;
+
+    // The record object to be displayed.
+    Record recordToDisplay = null;
+
+    // Date format for date display.
+    private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.forLanguageTag("en_AU"));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +61,17 @@ public class DetailActivity extends AppCompatActivity {
         editTextDate = findViewById(R.id.detail_editText_date);
 
         // Populate the EditText views with information passed in with the bundle.
-        editTextHeading.setText(bundle.getString("heading"));
-        editTextDescription.setText(bundle.getString("description"));
-        editTextPhone.setText(bundle.getString("phone"));
-        editTextDate.setText(bundle.getString("date"));
+        try {
+            int recordId = bundle.getInt("id");
+            recordToDisplay = LocalRecordDb.recordReadOne(this, recordId);
+            editTextHeading.setText(recordToDisplay.getHeading());
+            editTextDescription.setText(recordToDisplay.getDescription());
+            editTextPhone.setText(recordToDisplay.getPhone());
+            editTextDate.setText(simpleDateFormat.format(recordToDisplay.getDate()));
+        } catch (Exception ex) {
+            Log.d(TAG, "There was an issue reading the record in from local " +
+                    "database: " + ex);
+        }
 
         // Set the click function for the activity buttons.
         backClick();

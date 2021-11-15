@@ -23,6 +23,13 @@ public class EditActivity extends AppCompatActivity {
     EditText editTextPhone;
     EditText editTextDate;
 
+    // The record object to be displayed and updated.
+    Record recordToUpdate = null;
+
+    // String pattern and date format for date display.
+    // Date format for date display.
+    private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.forLanguageTag("en_AU"));
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,10 +45,17 @@ public class EditActivity extends AppCompatActivity {
         editTextDate = findViewById(R.id.edit_editText_date);
 
         // Populate the EditText views with information passed in with the bundle.
-        editTextHeading.setText(bundle.getString("heading"));
-        editTextDescription.setText(bundle.getString("description"));
-        editTextPhone.setText(bundle.getString("phone"));
-        editTextDate.setText(bundle.getString("date"));
+        try {
+            int recordId = bundle.getInt("id");
+            recordToUpdate = LocalRecordDb.recordReadOne(this, recordId);
+            editTextHeading.setText(recordToUpdate.getHeading());
+            editTextDescription.setText(recordToUpdate.getDescription());
+            editTextPhone.setText(recordToUpdate.getPhone());
+            editTextDate.setText(simpleDateFormat.format(recordToUpdate.getDate()));
+        } catch (Exception ex) {
+            Log.d(TAG, "There was an issue reading the record in from local " +
+                    "database: " + ex);
+        }
 
         // Set the click function for the 'Update' button.
         updateClick();
@@ -58,23 +72,18 @@ public class EditActivity extends AppCompatActivity {
             editTextPhone = findViewById(R.id.edit_editText_phone);
             editTextDate = findViewById(R.id.edit_editText_date);
 
-            // Add a SimpleDateFormat
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.forLanguageTag("en_AU"));
-
             try {
                 // Create a new Record object with text field strings.
-                Record updatedRecord = new Record(
-                        editTextHeading.getText().toString(),
-                        editTextDescription.getText().toString(),
-                        editTextPhone.getText().toString(),
-                        dateFormat.parse(editTextDate.getText().toString())
-                );
+                recordToUpdate.setHeading(editTextHeading.getText().toString());
+                recordToUpdate.setDescription(editTextDescription.getText().toString());
+                recordToUpdate.setPhone(editTextPhone.getText().toString());
+                recordToUpdate.setDate(simpleDateFormat.parse(editTextDate.getText().toString()));
 
                 // Update the record in the database.
-                LocalRecordDb.recordUpdate(this, updatedRecord);
+                LocalRecordDb.recordUpdate(this, recordToUpdate);
             }
             catch(Exception ex) {
-                Log.e(TAG, "Failed to update record.");
+                Log.e(TAG, "Failed to update record:" + ex);
             }
 
             // Return to the list activity.
