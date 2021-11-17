@@ -41,6 +41,7 @@ import androidx.customview.widget.ViewDragHelper;
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+// Reference: https://github.com/chthai64/SwipeRevealLayout
 // Reference: https://medium.com/android-news/android-recyclerview-swipeable-items-46a3c763498d
 public class SwipeRevealLayout extends ViewGroup {
 
@@ -368,7 +369,7 @@ public class SwipeRevealLayout extends ViewGroup {
         return isInMainView(motionEvent) && !shouldInitiateADrag();
     }
 
-    private boolean isInMainView(MotionEvent motionEvent) {
+    private boolean isInMainView(@NonNull MotionEvent motionEvent) {
         float x = motionEvent.getX();
         float y = motionEvent.getY();
 
@@ -383,7 +384,7 @@ public class SwipeRevealLayout extends ViewGroup {
         return dragDist >= minDistToInitiateDrag;
     }
 
-    private void accumulateDragDist(MotionEvent motionEvent) {
+    private void accumulateDragDist(@NonNull MotionEvent motionEvent) {
         final int action = motionEvent.getAction();
         if (action == MotionEvent.ACTION_DOWN) {
             dragDist = 0;

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <attr name="colorPrimary" format="color"/>
-    <attr name="colorPrimaryDark" format="color"/>
-    <attr name="colorSecondary" format="color"/>
-    <attr name="colorSecondaryDark" format="color"/>
-    <attr name="colorAccent" format="color"/>
-    <attr name="colorBackground" format="color"/>
-    <attr name="colorBackgroundSurface" format="color"/>
-    <attr name="colorBorder" format="color"/>
-    <attr name="colorError" format="color"/>
-    <attr name="colorText" format="color"/>
-    <attr name="colorTextHighEmphasis" format="color"/>
-    <attr name="colorTextMediumEmphasis" format="color"/>
-    <attr name="colorTextDisabled" format="color"/>
-    <attr name="colorTextError" format="color"/>
-    <attr name="colorButtonTextColor" format="color"/>
+  <attr name="colorPrimary" format="color"/>
+  <attr name="colorPrimaryDark" format="color"/>
+  <attr name="colorSecondary" format="color"/>
+  <attr name="colorSecondaryDark" format="color"/>
+  <attr name="colorAccent" format="color"/>
+  <attr name="colorBackground" format="color"/>
+  <attr name="colorBackgroundSurface" format="color"/>
+  <attr name="colorBorder" format="color"/>
+  <attr name="colorError" format="color"/>
+  <attr name="colorText" format="color"/>
+  <attr name="colorTextHighEmphasis" format="color"/>
+  <attr name="colorTextMediumEmphasis" format="color"/>
+  <attr name="colorTextDisabled" format="color"/>
+  <attr name="colorTextError" format="color"/>
+  <attr name="colorButtonTextColor" format="color"/>
 </resources>

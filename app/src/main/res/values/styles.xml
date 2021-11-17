@@ -1,44 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
-        <!-- Customize your theme here.-->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorSecondary">@color/colorSecondary</item>
-        <item name="colorSecondaryDark">@color/colorSecondaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="colorBackground">@color/colorBackground</item>
-        <item name="colorBackgroundSurface">@color/colorBackgroundSurface</item>
-        <item name="colorBorder">@color/colorBorder</item>
-        <item name="colorError">@color/colorError</item>
-        <item name="colorText">@color/colorText</item>
-        <item name="colorTextHighEmphasis">@color/colorTextHighEmphasis</item>
-        <item name="colorTextMediumEmphasis">@color/colorTextMediumEmphasis</item>
-        <item name="colorTextDisabled">@color/colorTextDisabled</item>
-        <item name="colorTextError">@color/colorTextError</item>
-        <item name="statusBarBackground">@color/colorPrimary</item>
-        <item name="android:statusBarColor">@color/colorPrimary</item>
-        <item name="colorButtonTextColor">@color/colorButtonTextColor</item>
-    </style>
+  <!-- Base application theme. -->
+  <style name="AppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
+    <!-- Customize your theme here.-->
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <item name="colorSecondary">@color/colorSecondary</item>
+    <item name="colorSecondaryDark">@color/colorSecondaryDark</item>
+    <item name="colorAccent">@color/colorAccent</item>
+    <item name="colorBackground">@color/colorBackground</item>
+    <item name="colorBackgroundSurface">@color/colorBackgroundSurface</item>
+    <item name="colorBorder">@color/colorBorder</item>
+    <item name="colorError">@color/colorError</item>
+    <item name="colorText">@color/colorText</item>
+    <item name="colorTextHighEmphasis">@color/colorTextHighEmphasis</item>
+    <item name="colorTextMediumEmphasis">@color/colorTextMediumEmphasis</item>
+    <item name="colorTextDisabled">@color/colorTextDisabled</item>
+    <item name="colorTextError">@color/colorTextError</item>
+    <item name="statusBarBackground">@color/colorPrimary</item>
+    <item name="android:statusBarColor">@color/colorPrimary</item>
+    <item name="colorButtonTextColor">@color/colorButtonTextColor</item>
+  </style>
 
-    <style name="DarkTheme" parent="AppTheme">
-        <item name="colorPrimary">@color/colorPrimaryDarkTheme</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDarkDarkTheme</item>
-        <item name="colorSecondary">@color/colorSecondaryDarkTheme</item>
-        <item name="colorSecondaryDark">@color/colorSecondaryDarkDarkTheme</item>
-        <item name="colorAccent">@color/colorAccentDarkTheme</item>
-        <item name="colorBackground">@color/colorBackgroundDarkTheme</item>
-        <item name="colorBackgroundSurface">@color/colorBackgroundSurfaceDarkTheme</item>
-        <item name="colorBorder">@color/colorBorderDarkTheme</item>
-        <item name="colorError">@color/colorErrorDarkTheme</item>
-        <item name="colorText">@color/colorTextDarkTheme</item>
-        <item name="colorTextHighEmphasis">@color/colorTextHighEmphasisDarkTheme</item>
-        <item name="colorTextMediumEmphasis">@color/colorTextMediumEmphasisDarkTheme</item>
-        <item name="colorTextDisabled">@color/colorTextDisabledDarkTheme</item>
-        <item name="colorTextError">@color/colorTextErrorDarkTheme</item>
-        <item name="statusBarBackground">@color/colorBackgroundDarkTheme</item>
-        <item name="android:statusBarColor">@color/colorBackgroundDarkTheme</item>
-        <item name="colorButtonTextColor">@color/colorButtonTextColorDarkTheme</item>
-    </style>
+  <style name="DarkTheme" parent="AppTheme">
+    <item name="colorPrimary">@color/colorPrimaryDarkTheme</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDarkDarkTheme</item>
+    <item name="colorSecondary">@color/colorSecondaryDarkTheme</item>
+    <item name="colorSecondaryDark">@color/colorSecondaryDarkDarkTheme</item>
+    <item name="colorAccent">@color/colorAccentDarkTheme</item>
+    <item name="colorBackground">@color/colorBackgroundDarkTheme</item>
+    <item name="colorBackgroundSurface">@color/colorBackgroundSurfaceDarkTheme</item>
+    <item name="colorBorder">@color/colorBorderDarkTheme</item>
+    <item name="colorError">@color/colorErrorDarkTheme</item>
+    <item name="colorText">@color/colorTextDarkTheme</item>
+    <item name="colorTextHighEmphasis">@color/colorTextHighEmphasisDarkTheme</item>
+    <item name="colorTextMediumEmphasis">@color/colorTextMediumEmphasisDarkTheme</item>
+    <item name="colorTextDisabled">@color/colorTextDisabledDarkTheme</item>
+    <item name="colorTextError">@color/colorTextErrorDarkTheme</item>
+    <item name="statusBarBackground">@color/colorBackgroundDarkTheme</item>
+    <item name="android:statusBarColor">@color/colorBackgroundDarkTheme</item>
+    <item name="colorButtonTextColor">@color/colorButtonTextColorDarkTheme</item>
+  </style>
 </resources>

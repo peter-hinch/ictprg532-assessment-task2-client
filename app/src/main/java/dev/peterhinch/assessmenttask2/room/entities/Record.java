@@ -11,91 +11,91 @@ import java.util.Date;
 
 @Entity(tableName = "record")
 public class Record {
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    public int id;
+  @PrimaryKey(autoGenerate = true)
+  @ColumnInfo(name = "id")
+  public int id;
 
-    @ColumnInfo(name = "heading")
-    public String heading;
+  @ColumnInfo(name = "heading")
+  public String heading;
 
-    @ColumnInfo(name = "description")
-    public String description;
+  @ColumnInfo(name = "description")
+  public String description;
 
-    @ColumnInfo(name = "phone")
-    public String phone;
+  @ColumnInfo(name = "phone")
+  public String phone;
 
-    @ColumnInfo(name = "date")
-    @TypeConverters({Converters.class})
-    public Date date;
+  @ColumnInfo(name = "date")
+  @TypeConverters({Converters.class})
+  public Date date;
 
-    public Record() { }
+  public Record() { }
 
-    @Ignore
-    public Record(String heading, String description, String phone, Date date) {
-        this.heading = heading;
-        this.description = description;
-        this.phone = phone;
-        this.date = date;
-    }
+  @Ignore
+  public Record(String heading, String description, String phone, Date date) {
+    this.heading = heading;
+    this.description = description;
+    this.phone = phone;
+    this.date = date;
+  }
 
-    @Ignore
-    public Record(int id, String heading, String description, String phone, Date date) {
-        this.id = id;
-        this.heading = heading;
-        this.description = description;
-        this.phone = phone;
-        this.date = date;
-    }
+  @Ignore
+  public Record(int id, String heading, String description, String phone, Date date) {
+    this.id = id;
+    this.heading = heading;
+    this.description = description;
+    this.phone = phone;
+    this.date = date;
+  }
 
-    @Ignore
-    public int getId() {
-        return id;
-    }
+  @Ignore
+  public int getId() {
+    return id;
+  }
 
-    @Ignore
-    public void setId(int id) {
-        this.id = id;
-    }
+  @Ignore
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public String getHeading() {
-        return heading;
-    }
+  public String getHeading() {
+    return heading;
+  }
 
-    public void setHeading(String heading) {
-        this.heading = heading;
-    }
+  public void setHeading(String heading) {
+    this.heading = heading;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-    public String getPhone() {
-        return phone;
-    }
+  public String getPhone() {
+    return phone;
+  }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+  public void setPhone(String phone) {
+    this.phone = phone;
+  }
 
-    public Date getDate() {
-        return date;
-    }
+  public Date getDate() {
+    return date;
+  }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
+  public void setDate(Date date) {
+    this.date = date;
+  }
 
-    @NonNull
-    @Override
-    public String toString() {
-        return "id: " + this.id +
-                "\nheading: " + this.heading +
-                "\ndescription: " + this.description +
-                "\nphone: " + this.phone +
-                "\ndate: " + this.date;
-    }
+  @NonNull
+  @Override
+  public String toString() {
+    return "id: " + this.id +
+        "\nheading: " + this.heading +
+        "\ndescription: " + this.description +
+        "\nphone: " + this.phone +
+        "\ndate: " + this.date;
+  }
 }

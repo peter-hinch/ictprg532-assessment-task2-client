@@ -12,18 +12,18 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface RemoteRecordDb {
-    @POST("Records")
-    Call<Record> RecordCreate(@Body Record record);
+  @POST("Records")
+  Call<Record> RecordCreate(@Body Record record);
 
-    @GET("Records")
-    Call<List<Record>> RecordAll();
+  @GET("Records")
+  Call<List<Record>> RecordAll();
 
-    @GET("Records/{id}")
-    Call<Record> Record(@Path("id") int id);
+  @GET("Records/{id}")
+  Call<Record> Record(@Path("id") int id);
 
-    @PUT("Records/{id}")
-    Call<Void> RecordUpdate(@Path("id") int id, @Body Record record);
+  @PUT("Records/{id}")
+  Call<Void> RecordUpdate(@Path("id") int id, @Body Record record);
 
-    @DELETE("Records/{id}")
-    Call<Record>  RecordDelete(@Path("id") int id);
+  @DELETE("Records/{id}")
+  Call<Record>  RecordDelete(@Path("id") int id);
 }

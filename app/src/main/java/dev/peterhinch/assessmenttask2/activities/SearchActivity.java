@@ -12,54 +12,54 @@ import android.widget.EditText;
 import dev.peterhinch.assessmenttask2.R;
 
 public class SearchActivity extends AppCompatActivity {
-    private final String TAG = this.getClass().getSimpleName();
+  private final String TAG = this.getClass().getSimpleName();
 
-    EditText editTextQuery;
+  EditText editTextQuery;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_search);
 
-        // Define the editText view for the search query.
-        editTextQuery = findViewById(R.id.search_editText_searchQuery);
+    // Define the editText view for the search query.
+    editTextQuery = findViewById(R.id.search_editText_searchQuery);
 
-        // Set the click function for the 'Search' and 'Cancel' buttons.
-        searchClick();
-        cancelClick();
-    }
+    // Set the click function for the 'Search' and 'Cancel' buttons.
+    searchClick();
+    cancelClick();
+  }
 
-    private void searchClick() {
-        Button btnSearch = findViewById(R.id.search_button_search);
-        btnSearch.setOnClickListener(view -> {
-            Log.d(TAG, "Search button pressed.");
-            String query = editTextQuery.getText().toString();
-            Intent intent = new Intent(this, ListActivity.class);
+  private void searchClick() {
+    Button btnSearch = findViewById(R.id.search_button_search);
+    btnSearch.setOnClickListener(view -> {
+      Log.d(TAG, "Search button pressed.");
+      String query = editTextQuery.getText().toString();
+      Intent intent = new Intent(this, ListActivity.class);
 
-            // Create a bundle to pass the search query back to the list activity.
-            Bundle bundle = new Bundle();
-            if (!query.equals("")) {
-                bundle.putString("query", query);
-            }
-            intent.putExtras(bundle);
+      // Create a bundle to pass the search query back to the list activity.
+      Bundle bundle = new Bundle();
+      if (!query.equals("")) {
+        bundle.putString("query", query);
+      }
+      intent.putExtras(bundle);
 
-            startActivity(intent);
-        });
-    }
+      startActivity(intent);
+    });
+  }
 
-    private void cancelClick() {
-        Button btnCancel = findViewById(R.id.search_button_cancel);
-        btnCancel.setOnClickListener(view -> {
-            Log.d(TAG, "Cancel button pressed.");
-            Intent intent = new Intent(this, ListActivity.class);
+  private void cancelClick() {
+    Button btnCancel = findViewById(R.id.search_button_cancel);
+    btnCancel.setOnClickListener(view -> {
+      Log.d(TAG, "Cancel button pressed.");
+      Intent intent = new Intent(this, ListActivity.class);
 
-            // Create a bundle to ensure no search query is passed back to the
-            // list activity.
-            Bundle bundle = new Bundle();
-            bundle.remove("query");
-            intent.putExtras(bundle);
+      // Create a bundle to ensure no search query is passed back to the
+      // list activity.
+      Bundle bundle = new Bundle();
+      bundle.remove("query");
+      intent.putExtras(bundle);
 
-            startActivity(intent);
-        });
-    }
+      startActivity(intent);
+    });
+  }
 }

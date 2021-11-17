@@ -12,15 +12,15 @@ import java.util.Date;
 // Reference: https://stackoverflow.com/questions/50313525/room-using-date-field
 // Reference: https://developer.android.com/training/data-storage/room/referencing-data
 public class Converters {
-    private static final String TAG = "Converters";
+  private static final String TAG = "Converters";
 
-    @TypeConverter
-    public static Date fromTimestamp(Long longDate) {
-        return longDate == null ? null : new Date(longDate);
-    }
+  @TypeConverter
+  public static Date fromTimestamp(Long longDate) {
+    return longDate == null ? null : new Date(longDate);
+  }
 
-    @TypeConverter
-    public static Long dateToTimestamp(Date date) {
-        return date == null ? null : date.getTime();
-    }
+  @TypeConverter
+  public static Long dateToTimestamp(Date date) {
+    return date == null ? null : date.getTime();
+  }
 }

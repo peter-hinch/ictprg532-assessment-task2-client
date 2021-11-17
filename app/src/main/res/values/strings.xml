@@ -1,90 +1,90 @@
 <resources>
-    <string name="app_name">Assessment Task 2</string>
-    <!-- Welcome Page -->
-    <string name="welcome_button_themeLight">Light</string>
-    <string name="welcome_button_themeDark">Dark</string>
-    <string name="welcome_textView_welcomeMessage">Welcome Page</string>
-    <!-- List Page -->
-    <string name="list_fabMini_add">Add</string>
-    <string name="list_fabMini_sortDesc">Sort in Descending Order</string>
-    <string name="list_fabMini_sortAsc">Sort in Ascending Order</string>
-    <string name="list_fabMini_search">Search</string>
-    <string name="list_fabMini_delete">Delete</string>
-    <string name="list_button_0">#</string>
-    <string name="list_button_1">A</string>
-    <string name="list_button_2">B</string>
-    <string name="list_button_3">C</string>
-    <string name="list_button_4">D</string>
-    <string name="list_button_5">E</string>
-    <string name="list_button_6">F</string>
-    <string name="list_button_7">G</string>
-    <string name="list_button_8">H</string>
-    <string name="list_button_9">I</string>
-    <string name="list_button_10">J</string>
-    <string name="list_button_11">K</string>
-    <string name="list_button_12">L</string>
-    <string name="list_button_13">M</string>
-    <string name="list_button_14">N</string>
-    <string name="list_button_15">O</string>
-    <string name="list_button_16">P</string>
-    <string name="list_button_17">Q</string>
-    <string name="list_button_18">R</string>
-    <string name="list_button_19">S</string>
-    <string name="list_button_20">T</string>
-    <string name="list_button_21">U</string>
-    <string name="list_button_22">V</string>
-    <string name="list_button_23">W</string>
-    <string name="list_button_24">X</string>
-    <string name="list_button_25">Y</string>
-    <string name="list_button_26">Z</string>
-    <string-array name="list_buttons_asc">
-        <item>@string/list_button_0</item>
-        <item>@string/list_button_1</item>
-        <item>@string/list_button_2</item>
-        <item>@string/list_button_3</item>
-        <item>@string/list_button_4</item>
-        <item>@string/list_button_5</item>
-        <item>@string/list_button_6</item>
-        <item>@string/list_button_7</item>
-        <item>@string/list_button_8</item>
-        <item>@string/list_button_9</item>
-        <item>@string/list_button_10</item>
-        <item>@string/list_button_11</item>
-        <item>@string/list_button_12</item>
-        <item>@string/list_button_13</item>
-        <item>@string/list_button_14</item>
-        <item>@string/list_button_15</item>
-        <item>@string/list_button_16</item>
-        <item>@string/list_button_17</item>
-        <item>@string/list_button_18</item>
-        <item>@string/list_button_19</item>
-        <item>@string/list_button_20</item>
-        <item>@string/list_button_21</item>
-        <item>@string/list_button_22</item>
-        <item>@string/list_button_23</item>
-        <item>@string/list_button_24</item>
-        <item>@string/list_button_25</item>
-        <item>@string/list_button_26</item>
-    </string-array>
-    <!-- Search Dialog -->
-    <string name="search_textView_searchLabel">Search by Heading</string>
-    <string name="search_button_search">Search</string>
-    <string name="search_button_cancel">Cancel</string>
-    <!-- Item View -->
-    <string name="itemView_accessibility">Swipe to edit, click to view or drag into bin to delete.</string>
-    <string name="itemView_textView_heading">Lorem Ipsum</string>
-    <string name="itemView_textView_description">dolor sit amet</string>
-    <string name="itemView_textView_phone">0123 456 789</string>
-    <string name="itemView_textView_date">16/09/2020</string>
-    <string name="itemView_fabMini_edit">Edit</string>
-    <!-- Detail Pages Generic -->
-    <string name="detail_editText_hint_heading">Heading</string>
-    <string name="detail_editText_hint_description">Description</string>
-    <string name="detail_editText_hint_phone">Phone Number</string>
-    <string name="detail_editText_hint_date">Date</string>
-    <string name="detail_button_back">Back</string>
-    <string name="detail_button_call">Call</string>
-    <!-- Add / Edit Pages -->
-    <string name="add_button_add">Add</string>
-    <string name="edit_button_update">Update</string>
+  <string name="app_name">Assessment Task 2</string>
+  <!-- Welcome Page -->
+  <string name="welcome_button_themeLight">Light</string>
+  <string name="welcome_button_themeDark">Dark</string>
+  <string name="welcome_textView_welcomeMessage">Welcome Page</string>
+  <!-- List Page -->
+  <string name="list_fabMini_add">Add</string>
+  <string name="list_fabMini_sortDesc">Sort in Descending Order</string>
+  <string name="list_fabMini_sortAsc">Sort in Ascending Order</string>
+  <string name="list_fabMini_search">Search</string>
+  <string name="list_fabMini_delete">Delete</string>
+  <string name="list_button_0">#</string>
+  <string name="list_button_1">A</string>
+  <string name="list_button_2">B</string>
+  <string name="list_button_3">C</string>
+  <string name="list_button_4">D</string>
+  <string name="list_button_5">E</string>
+  <string name="list_button_6">F</string>
+  <string name="list_button_7">G</string>
+  <string name="list_button_8">H</string>
+  <string name="list_button_9">I</string>
+  <string name="list_button_10">J</string>
+  <string name="list_button_11">K</string>
+  <string name="list_button_12">L</string>
+  <string name="list_button_13">M</string>
+  <string name="list_button_14">N</string>
+  <string name="list_button_15">O</string>
+  <string name="list_button_16">P</string>
+  <string name="list_button_17">Q</string>
+  <string name="list_button_18">R</string>
+  <string name="list_button_19">S</string>
+  <string name="list_button_20">T</string>
+  <string name="list_button_21">U</string>
+  <string name="list_button_22">V</string>
+  <string name="list_button_23">W</string>
+  <string name="list_button_24">X</string>
+  <string name="list_button_25">Y</string>
+  <string name="list_button_26">Z</string>
+  <string-array name="list_buttons_asc">
+    <item>@string/list_button_0</item>
+    <item>@string/list_button_1</item>
+    <item>@string/list_button_2</item>
+    <item>@string/list_button_3</item>
+    <item>@string/list_button_4</item>
+    <item>@string/list_button_5</item>
+    <item>@string/list_button_6</item>
+    <item>@string/list_button_7</item>
+    <item>@string/list_button_8</item>
+    <item>@string/list_button_9</item>
+    <item>@string/list_button_10</item>
+    <item>@string/list_button_11</item>
+    <item>@string/list_button_12</item>
+    <item>@string/list_button_13</item>
+    <item>@string/list_button_14</item>
+    <item>@string/list_button_15</item>
+    <item>@string/list_button_16</item>
+    <item>@string/list_button_17</item>
+    <item>@string/list_button_18</item>
+    <item>@string/list_button_19</item>
+    <item>@string/list_button_20</item>
+    <item>@string/list_button_21</item>
+    <item>@string/list_button_22</item>
+    <item>@string/list_button_23</item>
+    <item>@string/list_button_24</item>
+    <item>@string/list_button_25</item>
+    <item>@string/list_button_26</item>
+  </string-array>
+  <!-- Search Dialog -->
+  <string name="search_textView_searchLabel">Search by Heading</string>
+  <string name="search_button_search">Search</string>
+  <string name="search_button_cancel">Cancel</string>
+  <!-- Item View -->
+  <string name="itemView_accessibility">Swipe to edit, click to view or drag into bin to delete.</string>
+  <string name="itemView_textView_heading">Lorem Ipsum</string>
+  <string name="itemView_textView_description">dolor sit amet</string>
+  <string name="itemView_textView_phone">0123 456 789</string>
+  <string name="itemView_textView_date">16/09/2020</string>
+  <string name="itemView_fabMini_edit">Edit</string>
+  <!-- Detail Pages Generic -->
+  <string name="detail_editText_hint_heading">Heading</string>
+  <string name="detail_editText_hint_description">Description</string>
+  <string name="detail_editText_hint_phone">Phone Number</string>
+  <string name="detail_editText_hint_date">Date</string>
+  <string name="detail_button_back">Back</string>
+  <string name="detail_button_call">Call</string>
+  <!-- Add / Edit Pages -->
+  <string name="add_button_add">Add</string>
+  <string name="edit_button_update">Update</string>
 </resources>

@@ -1,115 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <dev.peterhinch.assessmenttask2.lib.SwipeRevealLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="90dp"
-    android:text="@string/itemView_accessibility">
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="90dp"
+  android:text="@string/itemView_accessibility">
 
-    <FrameLayout
+  <FrameLayout
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSecondary">
+
+    <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:gravity="center_vertical|end"
+      android:orientation="horizontal"
+      android:paddingStart="16dp"
+      android:paddingEnd="64dp">
+
+      <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/itemView_fabMini_edit"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:background="?attr/colorSecondary">
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:contentDescription="@string/itemView_fabMini_edit"
+        android:focusable="true"
+        app:backgroundTint="?attr/colorPrimary"
+        app:fabSize="mini"
+        app:srcCompat="@drawable/ic_baseline_edit_24"
+        app:tint="?attr/colorBackground"
+        tools:ignore="TouchTargetSizeCheck" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical|end"
-            android:orientation="horizontal"
-            android:paddingStart="16dp"
-            android:paddingEnd="64dp">
+    </LinearLayout>
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/itemView_fabMini_edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:contentDescription="@string/itemView_fabMini_edit"
-                android:focusable="true"
-                app:backgroundTint="?attr/colorPrimary"
-                app:fabSize="mini"
-                app:srcCompat="@drawable/ic_baseline_edit_24"
-                app:tint="?attr/colorBackground"
-                tools:ignore="TouchTargetSizeCheck" />
+  </FrameLayout>
 
-        </LinearLayout>
+  <FrameLayout
+    android:id="@+id/itemView_frameLayout_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="DuplicateClickableBoundsCheck">
 
-    </FrameLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="?attr/colorBackground"
+      android:visibility="visible"
+      tools:visibility="visible">
 
-    <FrameLayout
-        android:id="@+id/itemView_frameLayout_main"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:ignore="DuplicateClickableBoundsCheck">
+      <TextView
+        android:id="@+id/itemView_textView_heading"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="8dp"
+        android:lines="2"
+        android:text="@string/itemView_textView_heading"
+        android:textSize="24sp"
+        android:maxLines="2"
+        android:ellipsize="end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/itemView_textView_description"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?attr/colorBackground"
-            android:visibility="visible"
-            tools:visibility="visible">
+      <TextView
+        android:id="@+id/itemView_textView_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:text="@string/itemView_textView_description"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintBottom_toTopOf="@+id/itemView_textView_phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/itemView_textView_heading"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/itemView_textView_heading"
-                android:layout_width="140dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="8dp"
-                android:lines="2"
-                android:text="@string/itemView_textView_heading"
-                android:textSize="24sp"
-                android:maxLines="2"
-                android:ellipsize="end"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/itemView_textView_description"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+      <TextView
+        android:id="@+id/itemView_textView_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/itemView_textView_phone"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintBottom_toTopOf="@id/itemView_textView_date"
+        app:layout_constraintStart_toStartOf="@+id/itemView_textView_description"
+        app:layout_constraintTop_toBottomOf="@id/itemView_textView_description" />
 
-            <TextView
-                android:id="@+id/itemView_textView_description"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
-                android:text="@string/itemView_textView_description"
-                android:maxLines="1"
-                android:ellipsize="end"
-                app:layout_constraintBottom_toTopOf="@+id/itemView_textView_phone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toEndOf="@+id/itemView_textView_heading"
-                app:layout_constraintTop_toTopOf="parent" />
+      <TextView
+        android:id="@+id/itemView_textView_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/itemView_textView_date"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/itemView_textView_description"
+        app:layout_constraintTop_toBottomOf="@id/itemView_textView_phone" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/itemView_textView_phone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/itemView_textView_phone"
-                android:maxLines="1"
-                android:ellipsize="end"
-                app:layout_constraintBottom_toTopOf="@id/itemView_textView_date"
-                app:layout_constraintStart_toStartOf="@+id/itemView_textView_description"
-                app:layout_constraintTop_toBottomOf="@id/itemView_textView_description" />
-
-            <TextView
-                android:id="@+id/itemView_textView_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="@string/itemView_textView_date"
-                android:maxLines="1"
-                android:ellipsize="end"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/itemView_textView_description"
-                app:layout_constraintTop_toBottomOf="@id/itemView_textView_phone" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </FrameLayout>
+  </FrameLayout>
 
 </dev.peterhinch.assessmenttask2.lib.SwipeRevealLayout>
