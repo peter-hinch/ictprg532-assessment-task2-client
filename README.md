@@ -3,7 +3,7 @@ Holmesglen TAFE - ICT50718 Diploma of Software Development - ICTPRG532 Apply Adv
 
 ## Assessment Task 2 - Client Application (Android)
 ### User documentation
-https://github.com/peter-hinch/ictprg532-assessment-task2-client/wiki/User-Documentation
+https://github.com/peter-hinch/ictprg532-assessment-task2-client/wiki/User-Document
 ### Releases
 https://github.com/peter-hinch/ictprg532-assessment-task2-client/releases
 ### Server application
