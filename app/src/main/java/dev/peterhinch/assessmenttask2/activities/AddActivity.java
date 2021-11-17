@@ -39,7 +39,8 @@ public class AddActivity extends AppCompatActivity {
       EditText editTextDate = findViewById(R.id.add_editText_date);
 
       // Add a SimpleDateFormat
-      SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.forLanguageTag("en_AU"));
+      SimpleDateFormat dateFormat =
+          new SimpleDateFormat("dd/MM/yyyy", Locale.forLanguageTag("en_AU"));
 
       try {
         // Create a new Record object with text field strings.

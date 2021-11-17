@@ -507,7 +507,8 @@ public class SwipeRevealLayout extends ViewGroup {
         }
 
         @Override
-        public void onViewPositionChanged(@NonNull View changedView, int left, int top, int dx, int dy) {
+        public void onViewPositionChanged(@NonNull View changedView,
+                                          int left, int top, int dx, int dy) {
             super.onViewPositionChanged(changedView, left, top, dx, dy);
             if (mode == MODE_SAME_LEVEL) {
                 secondaryView.offsetLeftAndRight(dx);

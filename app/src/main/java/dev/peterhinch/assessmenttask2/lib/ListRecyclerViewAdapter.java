@@ -35,7 +35,8 @@ public class ListRecyclerViewAdapter
   private ArrayList<Record> recordList;
 
   // Date format for date display.
-  private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.forLanguageTag("en_AU"));
+  private final SimpleDateFormat simpleDateFormat =
+      new SimpleDateFormat("dd/MM/yyyy", Locale.forLanguageTag("en_AU"));
 
   // Create a constructor for the adapter class and dataset property.
   public ListRecyclerViewAdapter(ArrayList<Record> recordList) {

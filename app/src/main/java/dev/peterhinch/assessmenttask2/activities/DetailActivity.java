@@ -41,7 +41,8 @@ public class DetailActivity extends AppCompatActivity {
   Record recordToDisplay = null;
 
   // Date format for date display.
-  private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.forLanguageTag("en_AU"));
+  private final SimpleDateFormat simpleDateFormat =
+      new SimpleDateFormat("dd/MM/yyyy", Locale.forLanguageTag("en_AU"));
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {

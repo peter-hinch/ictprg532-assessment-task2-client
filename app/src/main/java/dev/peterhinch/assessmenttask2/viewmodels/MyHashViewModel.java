@@ -87,7 +87,8 @@ public class MyHashViewModel extends ViewModel
 
   @Override
   public void readAllOnResponseHandler(@NonNull List<Record> returnedRecordList) {
-    Log.d(TAG, returnedRecordList.size() + " records received by ListActivity ReadAllOnResponseHandler.");
+    Log.d(TAG, returnedRecordList.size() +
+        " records received by ListActivity ReadAllOnResponseHandler.");
     recyclerViewRecords.clear();
     for (Record r : returnedRecordList) {
       recyclerViewRecords.add(r);

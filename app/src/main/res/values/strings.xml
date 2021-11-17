@@ -71,7 +71,9 @@
   <string name="search_button_search">Search</string>
   <string name="search_button_cancel">Cancel</string>
   <!-- Item View -->
-  <string name="itemView_accessibility">Swipe to edit, click to view or drag into bin to delete.</string>
+  <string name="itemView_accessibility">
+    Swipe to edit, click to view or drag into bin to delete.
+  </string>
   <string name="itemView_textView_heading">Lorem Ipsum</string>
   <string name="itemView_textView_description">dolor sit amet</string>
   <string name="itemView_textView_phone">0123 456 789</string>
